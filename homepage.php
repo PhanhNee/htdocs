@@ -23,38 +23,6 @@
     <!-- Custom styles for this template-->
     <link href="css/css/sb-admin-2.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <style type="text/css">
-        .add_button
-        {
-            border-radius: 5px;
-            border: 0px;
-            width: 50px;
-            height: 30px;
-            font-style: normal;
-            color: white;
-            background-color: green;
-            margin: 5px 5px 5px 5px;
-        }
-        .view_button
-        {
-            border-radius: 5px;
-            border: 0px;
-            width: 45%;
-            font-style: normal;
-            color: white;
-            background-color: green;
-        }   
-          
-         .edit_button
-        {
-            border-radius: 5px;
-            border: 0px;
-            width: 45%;
-            font-style: normal;
-            color: white;
-            background-color: gray;
-        } 
-    </style>
 
 </head>
 
@@ -67,7 +35,7 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="homepage.php">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
@@ -201,103 +169,92 @@
                         </li>
 
                     </ul>
+
                 </nav>
 
-            
-                <!-- Begin Page Content -->
-                <div class="container-fluid">
-                    <!-- DataTales Example -->
-                    <div class="card shadow mb-4">
-                        <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">SẢN PHẨM</h6>
-                        </div>
-                        <div class="card-body">
-                            <div class="table-responsive">
-                                <!-- TÌM KIẾM -->
-                                <div style="margin:15px 0px 15px 0px;">
-                                    <label style="font-weight:bolder;">
-                                        Tìm kiếm:
-                                        <input class="form-control form-control-sm"></input>
-                                    </label>
-                                    <button class="add_button" title="Thêm sản phẩm">+</button>
-                                </div>
-                                <!-- BẢNG SẢN PHẨM -->
-                                <table class="table table-bordered" /*id="dataTable"*/ width="100%" cellspacing="0">
-                                    <thead >
-                                        <tr>
-                                            <th><center>Mã SP</center></th>
-                                            <th><center>Tên SP</center></th>
-                                            <th><center>Mã loại</center></th>
-                                            <th><center>Kích thước</center></th>
-                                            <th><center>Màu sắc</center></th>
-                                            <th><center>Giá</center></th>
-                                            <th><center>Giá KM</center></th>
-                                            <th><center>Tồn</center></th>
-                                            <th><center>TT</center></th>
-                                            <th></th>
-                                        </tr>
-                                    </thead>
-                                    <?php
-                                        include("connect.php");
-                                        $sql = "SELECT * FROM `tbl_sanpham`"; 
-                                        
-                                        $exec = mysqli_query($conn,$sql);
-                                        $num_rows = mysqli_num_rows($exec);
 
-                                        while($row = mysqli_fetch_array($exec))
-                                        {
-                                    ;?>
-                                    <tbody>
-                                        <tr>
-                                            <td><center><?php echo $row["MaSP"] ;?></center></td>
-                                            <td><?php echo $row["TenSP"] ;?></td>
-                                            <td><center><?php echo $row["MaLoai"] ;?></center></td>
-                                            <td><center><?php echo $row["KichThuoc"] ;?></center></td>
-                                            <td><center><?php echo $row["MauSac"] ;?></center></td>
-                                            <td><center><?php echo $row["NguyenGia"] ;?></center></td>
-                                            <td><center><?php echo $row["GiaKM"] ;?></center></td>
-                                            <td><center><?php echo $row["TonKho"] ;?></center></td>
-                                                <?php
-                                                    if($row["TonKho"] ==0)
-                                                    {
-                                                ?>
-                                            <td><span style="color:red;font-weight:bolder;">Hết hàng</span></td>
-                                            <?php
-                                                    }else if($row["TonKho"] <0)
-                                                    {
-                                            ?>
-                                            <td><span style="color:grey;font-weight:bolder;">Ngừng bán</span></td>
-                                            <?php
-                                                    }else{
-                                            ?>
-                                            <td><span></span></td>
-                                            <?php
-                                                    }
-                                            ?>
-                                            <th>
-                                                <button class="view_button" id="view" title="Xem chi tiết">
-                                                    <i class="fas fa-fw fa-eye"></i>
-                                                </button>
-                                                <button class="edit_button" id="edit">
-                                                    <i class="fa fa-pencil-square-o" title="Chỉnh sửa"></i>
-                                                </button>
-                                            </th>
-                                        </tr>
-                                        <?php
-                                            }
-                                            mysqli_close($conn);
-                                        ?>
-                                    </tbody>
-                                </table>
+                <!-- DANH MỤC THỐNG KÊ-->
+                <div class="container-fluid">
+
+                    <!-- Thống kê kinh doanh-->
+                    <div class="row">
+
+                        <!-- Số lượng đơn hàng-->
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-primary shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                               Đơn hàng</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Tổng thu các đơn hàng-->
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-success shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                                Tổng thu</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">$215,000</div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Tổng chi các đơn hàng-->
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-success shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                                Tổng chi</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">$215,000</div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                      
+                        <!-- Tổng số khách hàng-->
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-warning shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                                                Khách hàng</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-comments fa-2x text-gray-300"></i>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-
                 </div>
-                <!-- /.container-fluid -->
-
             </div>
-            <!-- End of Main Content -->
+
+
 
             <!-- FOOTER -->
             <footer class="sticky-footer bg-white">
@@ -307,20 +264,19 @@
                     </div>
                 </div>
             </footer>
-            
-
-
         </div>
     </div>
 
-
-   <!-- CUỘN TRANG
+    <!-- CUỘN TRANG-->
     <a class="scroll-to-top rounded" href="#page-top">
         <i class="fas fa-angle-up"></i>
-    </a>-->
+    </a>
 
 
-     <!-- ĐĂNG XUẤT-->
+
+
+
+    <!-- ĐĂNG XUẤT-->
     <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -333,14 +289,14 @@
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Hủy</button>
-                    <a class="btn btn-primary" href="login.html">Đăng xuất</a>
+                    <a class="btn btn-primary" href="verify_logout.php">Đăng xuất</a>
                 </div>
             </div>
         </div>
     </div>
 
 
-    
+
 
     <!-- Bootstrap core JavaScript-->
     <script src="css/vendor/jquery/jquery.min.js"></script>
@@ -353,11 +309,11 @@
     <script src="css/js/sb-admin-2.min.js"></script>
 
     <!-- Page level plugins -->
-    <script src="css/vendor/datatables/jquery.dataTables.min.js"></script>
-    <script src="css/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+    <script src="css/vendor/chart.js/Chart.min.js"></script>
 
     <!-- Page level custom scripts -->
-    <script src="css/js/demo/datatables-demo.js"></script>
+    <script src="css/js/demo/chart-area-demo.js"></script>
+    <script src="css/js/demo/chart-pie-demo.js"></script>
 
 </body>
 

@@ -5,7 +5,7 @@
     $_SESSION['checked'] = 0;
     echo "
     <script type='text/javascript'>
-    window.location.href='login.php';
+    window.location.href='index.php';
     </script>";
 ?>
 
