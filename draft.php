@@ -6,124 +6,28 @@
     <title>nhap</title>
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
     <style type="text/css">
-        *
-        {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        .success_massage{
+            width: 240px;
+            height: 60px;
+            background-color: #4da6ff;
+            border-radius: 10px;
+            display: inline-block;
         }
-        body
-        {
-            height: 100%;
-            overflow: hidden;
-            background: white;
-        }
-        .btn-modal-open
-        {
-            padding: 10px 5px;
-            margin: 5px 5px;
-            border: none;
-            outline: none;
-            border-radius: 5px;
-            background-color: green;
-            cursor: pointer;
+        p{
+            margin: 24px 20px 24px 20px;
             color: white;
-            font-weight: bold;
         }
-        .modal
-        {
-            display: none;
-            width: 800px;
-            height: 400px;
-            background-color: #bfbfbf;
-            position:fixed;
-            top: 100px;
-            left: 400px;
-            bottom: 100px;
-            right: 300px;
-            border-radius: 15px;
-        }
-        .modal-inner
-        {
-            height: 100%;
-            width: 100%;
-            position: relative;
-            margin: auto;
-            
-        }
-        .modal-header
-        {
-            width: 100%;
-            height: 30px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 25px 25px;
-            background-color: #4e73df;
+        i{
+            margin-right: 10px;
+            margin-left: 10px;
             color: white;
-            font-weight: bold;
-        }
-        .btn-close
-        {
-            border: none;
-            outline: none;
-            background-color: #4e73df;
-            cursor: pointer;
-            color: white;
-            font-weight: bold;
-        }
-        
-        .modal-body
-        {
-            height: 300px;
-            padding: 15px 15px;
-            background-color: #f8f9fc;
-        }
-        .txtbox
-        {
-            margin: 8px 8px 8px 8px;
-            outline: none;
-            height: 25px;
-        }
-        .modal-footer
-        {
-            height: 70px;
-            background-color: #f8f9fc;
-            text-align: right;
-            padding: 15px 5px 15px 15px;
         }
 
-        .btn-save
-        {
-            background-color: green;
-            outline: none;
-            border: none;
-            border-radius: 5px;
-            width: 100px;
-            height: 40px;
-            margin: 5px 5px 5px 5px;
-            cursor: pointer;
-            color: white;
-            font-weight: bold;
-        }
-        .btn-cancel
-        {
-            background-color: red;
-            outline: none;
-            border: none;
-            border-radius: 5px;
-            width: 60px;
-            height: 40px;
-            margin: 5px 5px 5px 5px;
-            cursor: pointer;
-            color: white;
-            font-weight: bold;
-        }
     </style>
 </head>
 
 <body>
-    <button class="btn-modal-open" id="add-product">+</button>
+    <!--<button class="btn-modal-open" id="add-product">+</button>
     <div class="modal">
         <div class="modal-inner">
             <div class="modal-header">
@@ -189,6 +93,17 @@
                 <button class="btn-cancel">Hủy</button>
             </div>
         </div>
+    </div>
+    -->
+    <div class="success_massage" style="width: 240px;
+            height: 60px;
+            background-color: #4da6ff;
+            border-radius: 10px;
+            display: inline-block;">
+        <p style="margin: 24px 20px 24px 20px;
+            color: white;"><i class="fas fa-fw fa-check" style="margin-right: 10px;
+            margin-left: 10px;
+            color: white;"></i>   Thêm mới thành công!</p>
     </div>
 </body>
 <script type="text/javascript">

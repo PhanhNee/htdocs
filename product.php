@@ -36,12 +36,6 @@
             overflow: hidden;
             background: white;
         }
-        .out{
-            opacity: 1;
-        }
-        .out.transparent{
-            opacity: 0.2;
-        }
         .add_button
         {
             border-radius: 5px;
@@ -173,6 +167,11 @@
         }
         .btn-cancel:hover{
             background-color: #ff6262;
+        }
+        .dropdown{
+            margin:8px 8px 8px 8px;
+            height:25px;
+            width:92%;
         }
     </style>
 
@@ -348,13 +347,13 @@
                 </button>  
             </div>
             <div class="modal-body">
-            <form id="add_product_form" method="POST" action="verify_add_product.php" enctype="multipart/form-data">
+            <form id="add_product_form" method="POST" action="product.php" enctype="multipart/form-data">
             <table>
                 <tr>
                     <td><label for="masp">Mã sản phẩm<span style="color:red;"> (*)</span> :</label></td>
                     <td><input type="textbox" class="txtbox" id="masp" name="masp"></td> 
                     <td><label for="trangthai">Trạng thái:</label></td>
-                    <td><select id="trangthai" name="trangthai" style="margin:8px 8px 8px 8px;height:25px;width:92%;" disabled="disabled">
+                    <td><select class="dropdown" id="trangthai" name="trangthai" disabled="disabled">
                         <option value="Hết hàng">Hết hàng</option>
                     </select></td>
                 </tr>
@@ -362,7 +361,7 @@
                     <td><label for="tensp">Tên sản phẩm<span style="color:red;"> (*)</span> :</label></td>
                     <td><input type="textbox" class="txtbox" id="tensp" name="tensp"></td>
                     <td><label for="maloai">Mã loại<span style="color:red;"> (*)</span> :</label></td>
-                    <td><select style="margin:8px 8px 8px 8px;height:25px;width:92%;" id="maloai">
+                    <td><select class="dropdown" id="maloai" name="maloai">
                     <?php
                                         include("connect.php");
                                         $sql = "SELECT * FROM `tbl_loaisanpham`"; 
@@ -411,10 +410,12 @@
                     <td><input type="file" class="txtbox" id="anh2" name="anh2"></td>
                 </tr>                
             </table>
+            <div class="modal-footer">
+                <button class="btn-save" id="btn_add_product_save" type="submit">Tạo mới</button>
+            </div>
             </form>
             </div>
             <div class="modal-footer">
-                <button class="btn-save" id="btn_add_product_save" type="submit">Tạo mới</button>
                 <button class="btn-cancel" id="btn_add_product_cancel">Hủy</button>
             </div>
         </div>
@@ -487,9 +488,6 @@
                                         ?>
                                     </tbody>
                                 </table>    
-                                <div class="modal">
-        
-    </div>
                             </div>
                         </div>
                     </div>
@@ -534,13 +532,13 @@
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Hủy</button>
-                    <a class="btn btn-primary" href="login.html">Đăng xuất</a>
+                    <a class="btn btn-primary" href="index.php">Đăng xuất</a>
                 </div>
             </div>
         </div>
     </div>
 
-
+    
     <script>
         document.getElementById("btn_add_product").addEventListener("click",function(){
             document.querySelector(".modal").style.display = "flex";    
@@ -570,6 +568,8 @@
         })
     </script>
 
+
+
     <!-- Bootstrap core JavaScript-->
     <script src="css/vendor/jquery/jquery.min.js"></script>
     <script src="css/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -588,5 +588,4 @@
     <script src="css/js/demo/datatables-demo.js"></script>
 
 </body>
-
 </html>
