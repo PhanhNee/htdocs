@@ -186,8 +186,20 @@
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                               Đơn hàng</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
+                                               Hoá đơn bán hàng</div>
+                                               <?php
+                                                    include("connect.php");
+                                                    $sql = "SELECT `MaHD` FROM `tbl_hoadon`";
+                                                    $exec = mysqli_query($conn,$sql);
+
+                                                    $num = mysqli_num_rows($exec);
+
+                                               ;?>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $num;?></div>
+                                            <?php 
+                                                mysqli_close($conn);
+                                            ;?>
+                                            <span>đơn hàng</span>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-calendar fa-2x text-gray-300"></i>
@@ -241,7 +253,19 @@
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
                                                 Khách hàng</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
+                                                <?php
+                                                    include("connect.php");
+                                                    $sql = "SELECT `MaKH` FROM `tbl_khachhang`";
+                                                    $exec = mysqli_query($conn,$sql);
+
+                                                    $num = mysqli_num_rows($exec);
+
+                                               ;?>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $num;?></div>
+                                            <?php 
+                                                mysqli_close($conn);
+                                            ;?>
+                                            <span>khách hàng</span>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-comments fa-2x text-gray-300"></i>
