@@ -12,7 +12,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>JUNO Dashboard</title>
+    <title>JUNO - Product</title>
 
     <!-- Custom fonts for this template-->
     <link href="css/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -157,23 +157,18 @@
                                         <input class="form-control form-control-sm"></input>
                                     </label>
                                     <button title="Thêm loại sản phẩm" id="btn_add_categories_product">+</button>
-                                    <script>
-                                        document.getElementById("btn_add_categories_product").addEventListener("click",function(){
-                                            document.querySelector(".add_min_modal").style.display ="flex";
-                                        })
-                                    </script>
                                     <button class="add_button" id="btn_add_product">Thêm sản phẩm</button>
                                 </div>
                                 <!--POPUP THÊM MỚI LOẠI SẢN PHẨM -->
-                                <div class="add_min_modal">
-                                    <div class="add_min_modal_inner">
+                                <div class="add_modal" id="add_categories_product_modal">
+                                    <div class="add_modal_inner">
                                         <div class="add_modal_header">
                                             <p>Thêm loại sản phẩm</p>
                                             <button class="btn_close" id="close_add_categories_product">
                                                 <i class="fas fa-times"></i>
                                             </button>
                                         </div>
-                                        <div class="add_min_modal_body">
+                                        <div class="add_modal_body">
                                             <form action="verify_add_categories_product.php" method="POST" id="add_categories_product_form">
                                             <table>
                                                 <tr>
@@ -193,6 +188,9 @@
                                     </div>
                                 </div>
                                 <script>
+                                    document.getElementById("btn_add_categories_product").addEventListener("click",function(){
+                                            document.querySelector("#add_categories_product_modal").style.display ="flex";
+                                        })
                                     document.getElementById("btn_save_add_categories_product").addEventListener("click",function(){
                                         if(document.forms["add_categories_product_form"]["maloai"].value =="")
                                         {
@@ -207,12 +205,11 @@
 
                                     })
                                     document.getElementById("close_add_categories_product").addEventListener("click",function(){
-                                            document.querySelector(".add_min_modal").style.display = "none";
+                                            document.querySelector("#add_categories_product_modal").style.display = "none";
                                             })
-                                        
                                 </script>
                                 <!--POPUP THÊM MỚI SẢN PHẨM -->
-                                <div class="add_modal">
+                                <div class="add_modal" id="add_product_modal">
                                     <div class="add_modal_inner">
                                         <!--HEADER POPUP -->
                                         <div class="add_modal_header">
@@ -293,15 +290,31 @@
                                 <script>
                                     //Chọn thêm sản phẩm, hiển thị popup thêm sản phẩm
                                     document.getElementById("btn_add_product").addEventListener("click",function(){
-                                        document.querySelector(".add_modal").style.display = "flex";    
+                                        document.querySelector("#add_product_modal").style.display = "flex"; 
                                     })
+                                    document.getElementById("btn_save_add_product").addEventListener("click",function(){
+                                        if(document.forms["add_product_form"]["masp"].value =="")
+                                        {
+                                            document.getElementById("masp").style.borderColor="red";
+                                            document.getElementById("masp").focus();
+                                        }
+                                        if(document.forms["add_product_form"]["tensp"].value =="")
+                                        {
+                                            document.getElementById("tensp").style.borderColor="red";
+                                            document.getElementById("tensp").focus();
+                                        }   
+                                        if(document.forms["add_product_form"]["gia"].value =="")
+                                        {
+                                            document.getElementById("gia").style.borderColor="red";
+                                            document.getElementById("gia").focus();
+                                        }  
+                                    })   
+                                        
+                                    
                                     //Đóng popup thêm sản phẩm
                                     document.getElementById("close_add_product").addEventListener("click",function(){
-                                        document.querySelector(".add_modal").style.display = "none";    
-                                    })
-                                    document.getElementById("btn_cancel_add_product").addEventListener("click",function(){
-                                        document.querySelector(".add_modal").style.display = "none";
-                                    })    
+                                        document.querySelector("#add_product_modal").style.display = "none";    
+                                    })   
                                 </script>
                                 <!--BẢNG DANH SÁCH SẢN PHẨM -->
                                 <table class="table table-bordered" /*id="dataTable"*/ width="100%" cellspacing="0">
@@ -352,15 +365,15 @@
                                             <?php
                                                     }else{
                                             ?>
-                                            <td><span></span></td>
+                                            <td><span style="color:green;font-weight:bolder;">Còn hàng</span></td>
                                             <?php
                                                     }
                                             ?>
                                             <th>
-                                                <button class="view_button" id="view" title="Xem chi tiết" onclick="openModal()">
+                                                <button class="view_button" id="view_product" title="Xem chi tiết" onclick="openModal()">
                                                     <a href="product.php?id=<?php echo $row['MaSP'];?>"><i class="fas fa-fw fa-eye"></i></a>
                                                 </button>
-                                                <button class="edit_button" id="edit">
+                                                <button class="edit_button" id="edit_product">
                                                     <a href="product.php?id=<?php echo $row['MaSP'];?>"><i class="fa fa-pencil-square-o" title="Chỉnh sửa"></i></a>
                                                 </button>
                                             </th>
@@ -411,7 +424,7 @@
         </div>
     </div>
 
-    
+                                            
     <!-- Bootstrap core JavaScript-->
     <script src="css/vendor/jquery/jquery.min.js"></script>
     <script src="css/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>

@@ -10,6 +10,8 @@
 
     $folder_img = "img/".basename($_FILES["anh1"]["name"]);
     $folder_img1 = "img/".basename($_FILES["anh2"]["name"]);
+    $sql = "SELECT `MaSP` FROM `tbl_sanpham` WHERE `MaSP`='".$masp."'";
+    $exec = mysqli_query($conn,$sql);
 
     $sql = "INSERT INTO `tbl_sanpham`(`MaSP`, `TenSP`, `MaLoai`, `KichThuoc`, `MauSac`, `Anh1`, `Anh2`, `NguyenGia`, `GiaKM`, `TonKho`, `TrangThai`) 
     VALUES ('".$masp."','".$tensp."','".$maloai."','".$kichthuoc."','".$mausac."','".$folder_img."','".$folder_img1."','".$nguyengia."','".$giakm."','0','Hết hàng')"; 

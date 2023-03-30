@@ -17,9 +17,8 @@
         {
             border-radius: 5px;
             border: 0px;
-            width: 130px;
+            width: 150px;
             height: 30px;
-            font-style: normal;
             color: white;
             background-color: green;
             margin: 5px 5px 5px 5px;
@@ -35,8 +34,7 @@
             background-color: green;
             cursor:pointer;
         }   
-          
-         .edit_button
+        .edit_button
         {
             border-radius: 5px;
             border: 0px;
@@ -47,27 +45,15 @@
             cursor: pointer;
         } 
         .add_modal{
-            display: none;
-            width: 900px;
-            height: 460px;
             background-color: #bfbfbf;
             position:fixed;
-            top: 120px;
-            left: 400px;
-            bottom: 100px;
-            right: 300px;
         }
         .add_modal_inner{
-            
-            height: 100%;
-            width: 100%;
             position: relative;
             margin: auto;
             border-radius: 10px;
         }
         .add_modal_header{
-            width: 100%;
-            height: 60px;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -75,21 +61,25 @@
             color: white;
             font-weight: bold;
         }
+        .add_modal_header p{
+            margin: 0px 0px 0px 0px;
+            padding: 15px 10px 15px 10px;           
+        }
         .add_modal_body{
-            height: 400px;
-            padding:  10px 10px 10px 10px;
             background-color: #e6e9f4;
             border: none;
             position: relative;
             color: gray;
             font-weight: bolder;
         }
-        .add_modal_header p{
-            width: 100%;
-            height: 50px;
-            margin: 0px 0px 0px 0px;
-            padding: 15px 10px 15px 10px;           
+        .add_modal_footer{
+            background-color:#e6e9f4;
+            text-align: right;
+            padding: 15px 5px 15px 15px;
+            border: none;
+            display: inline-block;
         }
+
         .btn_close{
             width: 40px;
             height: 40px;
@@ -103,6 +93,8 @@
         .btn_close:hover{
             color: red;
         }
+
+
         .txtbox{
             margin: 8px 8px 8px 8px;
             outline: none;
@@ -119,15 +111,9 @@
             height:30px;
             width:94%;
         }
-        .add_modal_footer{
-            width: 100%;
-            height: 60px;
-            background-color:#e6e9f4;
-            text-align: right;
-            padding: 15px 5px 15px 15px;
-            border: none;
-            display: inline-block;
-        }
+        
+
+
         .btn_save{
             background-color: green;
             outline: none;
@@ -143,21 +129,7 @@
         .btn_save:hover{
             background-color: #4eff4e;
         }
-        .btn_cancel{
-            background-color: red;
-            outline: none;
-            border: none;
-            border-radius: 5px;
-            width: 60px;
-            height: 40px;
-            margin: 5px 5px 5px 5px;
-            cursor: pointer;
-            color: white;
-            font-weight: bold;
-        }
-        .btn_cancel:hover{
-            background-color: #ff6262;
-        }
+        
         #btn_add_categories_product{
             width: 50px;
             border-radius: 5px;
@@ -169,30 +141,8 @@
             margin: 5px 1px 1px 5px;
             cursor:pointer;
         }
-        .add_min_modal{
-            width: 380px;
-            height: 230px;
-            display: none;
-            background-color: #e6e9f4;
-            position:fixed;
-            top: 300px;
-            bottom: 250px;
-            left: 600px;
-            right: 500px;
-            border-radius: 5px;
-        }
-        .add_min_modal_inner{
-            width: 100%;
-            height: 100%;
-        }
-        .add_min_modal_body{
-            width: 100%;
-            height: 100%;
-            padding: 5px 5px 5px 5px;
-        }
-        a:link{
-            color: white;
-        }
-        i{
-            color: white;
+        
+        .add_modal #add_categories_product_modal{
+            width: 340px;
+            height: 200px;
         }
