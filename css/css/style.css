@@ -150,5 +150,7 @@
             margin: 5px 1px 1px 5px;
             cursor:pointer;
         }
-        
+        #tbl_chitiet_hoadon td{
+            padding: 2px 2px 2px 2px;
+        }
         

@@ -156,137 +156,105 @@
                                         Tìm kiếm:
                                         <input class="form-control form-control-sm"></input>
                                     </label>
-                                    <button class="add_button" id="btn_add_product">Thêm hóa đơn</button>
+                                    <button class="add_button" id="btn_add_invoice">Thêm hóa đơn</button>
                                 </div>
-                            
                                 <!--POPUP THÊM MỚI HÓA ĐƠN -->
-                                <div class="add_modal" id="add_product_modal">
+                                <div class="add_modal" id="add_invoice_modal">
                                     <div class="add_modal_inner">
                                         <!--HEADER POPUP -->
                                         <div class="add_modal_header">
-                                        <p>Thêm mới hóa đơn</p>
-                                        <button class="btn_close" id="close_add_product">
+                                        <p>Thêm mới sản phẩm</p>
+                                        <button class="btn_close" id="close_add_invoice">
                                         <i class="fas fa-times"></i>
                                         </button>
                                     </div>
                                         <div class="add_modal_body">
-                                            <form class="add_form" name="add_product_form" id="add_product_form" method="POST" action="verify_add_product.php">
+                                            <form class="add_form" name="add_invoice_form" id="add_invoice_form" method="POST" action="verify_add_invoice.php">
                                                 <table>
-                                                    <tr><span style="color:red;padding-left: 10px;">(*)</span> : Thông tin bắt buộc</tr>
                                                     <tr>
-                                                        <td><label for="masp">Mã sản phẩm<span style="color:red;"> (*)</span> :</label></td>
-                                                        <td><input type="textbox" class="txtbox" id="masp" name="masp" required></td> 
-                                                        <td><label for="trangthai">Trạng thái<span style="color:red;"> (*)</span> :</label></td>
-                                                        <td><select class="dropdown_box" id="trangthai" name="trangthai" disabled="disabled">
-                                                                <option>Hết hàng</option>
-                                                            </select>
-                                                        </td>
-                                                    </tr>
+                                                        <td><label for="sdt">Số điện thoại<span style="color:red;"> (*)</span> :</label></td>
+                                                        <td><input type="textbox" class="txtbox" id="sdt" name="sdt" style="width:212px;"><button><i class="fa fa-search" style="width:35px;height:100%;color:black;border:0;"></button></i></td>
+                                                        <td><label for="makh">Mã KH<span style="color:red;"> (*)</span> :</label></td>
+                                                        <td><input type="textbox" class="txtbox" id="makh" name="makh"></td>
+                                                    </tr>     
                                                     <tr>
-                                                        <td><label for="tensp">Tên sản phẩm<span style="color:red;"> (*)</span> : </label></td>
-                                                        <td><input type="textbox" class="txtbox" id="tensp" name="tensp" required></td>
-                                                        <td><label for="maloai">Mã loại<span style="color:red;"> (*)</span> :</label></td>
+                                                        <td><label for="tenkh">Tên khách hàng<span style="color:red;"> (*)</span> :</label></td>
+                                                        <td><input type="textbox" class="txtbox" id="tenkh" name="tenkh"></td>
+                                                        <td><label for="diachi">Địa chỉ:</label></td>
+                                                        <td><input type="textbox" class="txtbox" id="diachi" name="diachi"></td>
+                                                    </tr>     
+                                                    <tr>
+                                                        <td><label for="manv" style="width: 160px;">Người lập<span style="color:red;"> (*)</span> :</label></td>
                                                         <td>
-                                                            <select class="dropdown_box" name="maloai" id="maloai">
-                                                            <?php
-                                                                include("connect.php");
-                                                                $sql = "SELECT * FROM `tbl_loaisanpham`"; 
+                                                            <select class="dropdown_box" name="manv" id="manv" disabled="disabled">
+                                                                <?php
+                                                                    include("connect.php");
+                                                                    $sql = "SELECT * FROM `tbl_nhanvien` WHERE MaNV = '".$_SESSION["username"]."'"; 
                                         
-                                                                $exec = mysqli_query($conn,$sql);
-                                                                $num_rows = mysqli_num_rows($exec);
-
-                                                                while($row = mysqli_fetch_array($exec))
+                                                                    $exec = mysqli_query($conn,$sql);
+                                                                    $num_rows = mysqli_num_rows($exec);
+                            
+                                                                    while($row = mysqli_fetch_array($exec))
                                                                     {
                                                                 ;?>
-                                                                <option value="<?php echo $row["MaLoai"] ;?>"><?php echo $row["MaLoai"] ;?> - <?php echo $row["TenLoai"] ;?></option>
+                                                                <option value="<?php echo $row["MaNV"] ;?>"><?php echo $row["MaNV"] ;?> - <?php echo $row["TenNV"] ;?></option>
                                                                 <?php
-                                                                    }
-                                                                ?>
+                                                                    } 
+                                                                ;?>
                                                             </select>
                                                         </td>
+                                                    </tr> 
+                                                </table>   
+                                            </form>
+                                            <form>
+                                                <table id="tbl_chitiet_hoadon" style="width:100%;border-style: groove;">
+                                                    <tr>
+                                                        <th>Mã sản phẩm</th>
+                                                        <th>Tên sản phẩm</th>
+                                                        <th>Số lượng</th>
+                                                        <th>Thành tiền</th>
                                                     </tr>
                                                     <tr>
-                                                        <td><label for="gia">Nguyên giá<span style="color:red;"> (*)</span> :</label></td>
-                                                        <td><input type="textbox" class="txtbox" id="gia" name="gia" required></td>
-                                                        <td><label for="giakm">Giá khuyến mãi: </label></td>
-                                                        <td><input type="textbox" class="txtbox" id="giakm" name="giakm"></td>
+                                                        <td>January</td>
+                                                        <td>$100</td>
+                                                        <td>January</td>
+                                                        <td>$100</td>
                                                     </tr>
                                                     <tr>
-                                                        <td><label for="mausac">Màu sắc:</label></td>
-                                                        <td><input type="textbox" class="txtbox" id="mausac" name="mausac"></td>
-                                                        <td><label for="kichthuoc">Kích thước:</label></td>
-                                                        <td><input type="textbox" class="txtbox" id="kichthuoc" name="kichthuoc"></td>
+                                                        <td>February</td>
+                                                        <td>$80</td>
+                                                        <td>February</td>
+                                                        <td>$80</td>
                                                     </tr>
-                                                    <tr></tr>
-                                                    <tr>
-                                                        <td><label for="tonkho">Tồn kho<span style="color:red;"> (*)</span> :</label></td>
-                                                        <td><input type="textbox"  class="txtbox" id="tonkho" name="tonkho" value="0" disabled="disabled"></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><label for="anh1">Ảnh SP 1:</label></td>
-                                                        <td><input type="file" class="file_box" id="anh1" name="anh1"></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><label for="anh2">Ảnh SP 2:</label></td>
-                                                        <td><input type="file" class="file_box" id="anh2" name="anh2"></td>
-                                                    </tr>                
                                                 </table>
-                                            <div class="add_modal_footer">
-                                                <button class="btn_save" id="btn_save_add_product">Tạo mới</button>
-                                                <!--<button class="btn_cancel" id="btn_cancel_add_product">Hủy</button>-->
-                                            </div>
                                             </form>
                                         </div>
                                     </div>   
                                 </div>
                                 <script>
                                     //Chọn thêm sản phẩm, hiển thị popup thêm sản phẩm
-                                    document.getElementById("btn_add_product").addEventListener("click",function(){
-                                        document.querySelector("#add_product_modal").style.display = "flex"; 
+                                    document.getElementById("btn_add_invoice").addEventListener("click",function(){
+                                        document.querySelector("#add_invoice_modal").style.display = "flex"; 
                                     })
-                                    document.getElementById("btn_save_add_product").addEventListener("click",function(){
-                                        if(document.forms["add_product_form"]["masp"].value =="")
-                                        {
-                                            document.getElementById("masp").style.borderColor="red";
-                                            document.getElementById("masp").focus();
-                                        }
-                                        if(document.forms["add_product_form"]["tensp"].value =="")
-                                        {
-                                            document.getElementById("tensp").style.borderColor="red";
-                                            document.getElementById("tensp").focus();
-                                        }   
-                                        if(document.forms["add_product_form"]["gia"].value =="")
-                                        {
-                                            document.getElementById("gia").style.borderColor="red";
-                                            document.getElementById("gia").focus();
-                                        }  
-                                    })   
-                                        
-                                    
                                     //Đóng popup thêm sản phẩm
-                                    document.getElementById("close_add_product").addEventListener("click",function(){
-                                        document.querySelector("#add_product_modal").style.display = "none";    
+                                    document.getElementById("close_add_invoice").addEventListener("click",function(){
+                                        document.querySelector("#add_invoice_modal").style.display = "none";    
                                     })   
                                 </script>
                                 <!--BẢNG DANH SÁCH SẢN PHẨM -->
                                 <table class="table table-bordered" /*id="dataTable"*/ width="100%" cellspacing="0">
                                     <thead >
                                         <tr>
-                                            <th><center>Mã SP</center></th>
-                                            <th><center>Tên SP</center></th>
-                                            <th><center>Mã loại</center></th>
-                                            <th><center>Kích thước</center></th>
-                                            <th><center>Màu sắc</center></th>
-                                            <th><center>Giá</center></th>
-                                            <th><center>Giá KM</center></th>
-                                            <th><center>Tồn</center></th>
-                                            <th><center>TT</center></th>
+                                            <th><center>Mã hóa đơn</center></th>
+                                            <th><center>Ngày lập</center></th>
+                                            <th><center>Mã nhân viên</center></th>
+                                            <th><center>Mã khách hàng</center></th>
                                             <th></th>
                                         </tr>
                                     </thead>
                                     <?php
                                         
-                                        $sql = "SELECT * FROM `tbl_sanpham`"; 
+                                        $sql = "SELECT * FROM `tbl_hoadon`"; 
                                         
                                         $exec = mysqli_query($conn,$sql);
                                         $num_rows = mysqli_num_rows($exec);
@@ -296,37 +264,16 @@
                                     ;?>
                                     <tbody>
                                         <tr>
-                                            <td><center><?php echo $row["MaSP"] ;?></center></td>
-                                            <td><?php echo $row["TenSP"] ;?></td>
-                                            <td><center><?php echo $row["MaLoai"] ;?></center></td>
-                                            <td><center><?php echo $row["KichThuoc"] ;?></center></td>
-                                            <td><center><?php echo $row["MauSac"] ;?></center></td>
-                                            <td><center><?php echo $row["NguyenGia"] ;?></center></td>
-                                            <td><center><?php echo $row["GiaKM"] ;?></center></td>
-                                            <td><center><?php echo $row["TonKho"] ;?></center></td>
-                                                <?php
-                                                    if($row["TonKho"] ==0)
-                                                    {
-                                                ?>
-                                            <td><span style="color:red;font-weight:bolder;">Hết hàng</span></td>
-                                            <?php
-                                                    }else if($row["TonKho"] <0)
-                                                    {
-                                            ?>
-                                            <td><span style="color:grey;font-weight:bolder;">Ngừng bán</span></td>
-                                            <?php
-                                                    }else{
-                                            ?>
-                                            <td><span style="color:green;font-weight:bolder;">Còn hàng</span></td>
-                                            <?php
-                                                    }
-                                            ?>
+                                            <td><center><?php echo $row["MaHD"] ;?></center></td>
+                                            <td><center><?php echo $row["MaKH"] ;?></center></td>
+                                            <td><center><?php echo $row["MaNV"] ;?></center></td>
+                                            <td><center><?php echo $row["NgayLap"] ;?></center></td>
                                             <th>
                                                 <button class="view_button" id="view_product" title="Xem chi tiết" onclick="openModal()">
-                                                    <a href="product.php?id=<?php echo $row['MaSP'];?>"><i class="fas fa-fw fa-eye"></i></a>
+                                                    <i class="fas fa-fw fa-eye"></i>
                                                 </button>
                                                 <button class="edit_button" id="edit_product">
-                                                    <a href="product.php?id=<?php echo $row['MaSP'];?>"><i class="fa fa-pencil-square-o" title="Chỉnh sửa"></i></a>
+                                                    <i class="fa fa-pencil-square-o" title="Chỉnh sửa"></i>
                                                 </button>
                                             </th>
                                         </tr>
@@ -334,11 +281,6 @@
                                             }
                                             mysqli_close($conn);
                                         ?>
-                                        <script>
-                                            document.getElementById("view").addEventListener("click",function(){
-                                                document.querySelector("product_details").style.display ="flex";
-                                            })
-                                        </script>
                                     </tbody>
                                 </table>    
                             </div>

@@ -1,49 +1,53 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<form method="post" action="<?php echo $_SERVER['PHP_SELF'];?>" id="haha" name="haha">
+    <input type="text" id="search" name="search" placeholder="sdt"></input>
+    <button type="submit"> tim kiem</button>
+</form>
+<br>
+<form  id="hihi" name = "hihi">
+    <input type="text" id="makh" name="makh" placeholder="makh"></input>
+    <input type="text" id="tenkh" name="tenkh" placeholder="tenkh"></input>
+    <input type="text" id="diachi" name="diachi" placeholder="diachi"></input>  
+    <button type="submit" onclick="hi()">Them moi khach hang</button>
+</form>
+</body>
+</html>
 <?php
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $sdt = $_REQUEST["search"];
 
-  $conn = mysqli_connect("localhost", "root", "", "db_juno_management");
-   
-    if(!$conn)
+    include("connect.php");
+    $sql="select * from tbl_khachhang where SDT='".$sdt."'";
+    $exec = mysqli_query($conn,$sql);
+
+    $num = mysqli_num_rows($exec);
+    if($num > 0)
     {
-        die("Connection failed!");
+        $row = mysqli_fetch_array($exec);
+        echo"
+            <script>
+                document.getElementById('makh').value ='".$row["MaKH"]."';
+                document.getElementById('tenkh').value ='".$row["TenKH"]."';
+                document.getElementById('diachi').value ='".$row["DiaChi"]."';
+                document.getElementById('search').value ='".$row["SDT"]."';
+            </script>
+        ";
+    }else{
+        echo"
+            <script>
+                document.forms['haha']['search'].value ='".$sdt."';
+                document.getElementById('tenkh').focus();
+            </script>
+        ";
     }
-    $sql = "SELECT MaKH FROM `tbl_khachhang` WHERE NgayTao = (SELECT MAX(NgayTao) FROM tbl_khachhang)"; 
-                                        
-    $exec = mysqli_query($conn,$sql);
-    $code = mysqli_fetch_object($exec) -> MaKH;
-
-    $makh = (string) ++$code;
-    
-    $sql = "INSERT INTO `tbl_khachhang`(`MaKH`, `TenKH`, `SDT`, `DiaChi`) 
-                VALUES ('".$makh."','Nguyen Phuong Anh','0973846571','VAN PHUC')";
-    
-    $exec = mysqli_query($conn,$sql);
-
+    $_GET["sdt"] = $sdt;
+}
 ;?>
-
-<!--<div class="add_min_modal">
-                                    <div class="add_min_modal_inner">
-                                        <div class="add_modal_header">
-                                            <p>Thêm loại sản phẩm</p>
-                                            <button class="btn_close" id="close_add_categories_product">
-                                                <i class="fas fa-times"></i>
-                                            </button>
-                                        </div>
-                                        <div class="add_min_modal_body">
-                                            <form action="verify_add_categories_product.php" method="POST" id="add_categories_product_form">
-                                            <table>
-                                                <tr>
-                                                   <td><label for="maloai">Mã loại<span style="color:red;"> (*)</span> :</label></td>
-                                                    <td><input type="textbox" class="txtbox" id="maloai" name="maloai" required></td> 
-                                                </tr>
-                                                <tr>
-                                                    <td><label for="tenloai">Tên loại<span style="color:red;"> (*)</span> :</label></td>
-                                                    <td><input type="textbox" class="txtbox" id="tenloai" name="tenloai" required></td> 
-                                                </tr>
-                                            </table>
-                                        <div class="add_modal_footer">
-                                            <button class="btn_save" id="btn_save_add_categories_product">Tạo mới</button>
-                                        </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>-->
+<script>
+    function hi(){
+        <?php echo "xin chao ban";?>
+    }
+</script>
