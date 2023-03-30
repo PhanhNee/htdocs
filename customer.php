@@ -156,12 +156,12 @@
                                         Tìm kiếm:
                                         <input class="form-control form-control-sm"></input>
                                     </label>
-                                    <button class="add_button" id="btn_add_customer" style="width: 140px;">Thêm khách hàng</button>
+                                    <!--<button class="add_button" id="btn_add_customer" style="width: 140px;">Thêm khách hàng</button>-->
                                 </div>
                                 <!--POPUP THÊM MỚI KHÁCH HÀNG-->
-                                <div class="add_modal" id="add_customer_modal">
+                                <!--<div class="add_modal" id="add_customer_modal">
                                     <div class="add_modal_inner">
-                                        <!--HEADER POPUP -->
+                                       
                                         <div class="add_modal_header">
                                         <p>Thêm mới khách hàng</p>
                                         <button class="btn_close" id="close_add_customer">
@@ -185,7 +185,7 @@
                                                         <td><input type="textbox" class="txtbox" id="makh" name="makh" disabled="disabled" value="<?php echo ++$code ;?>"></td>
                                                         <?php
                                                                 mysqli_close($conn);
-                                                        ?> 
+                                                        ?>
                                                         <td><label for="tenkh">Tên khách hàng<span style="color:red;"> (*)</span> : </label></td>
                                                         <td><input type="textbox" class="txtbox" id="tenkh" name="tenkh" required></td>
                                                     </tr>
@@ -199,7 +199,6 @@
                                                 </table>
                                             <div class="add_modal_footer">
                                                 <button class="btn_save" id="btn_save_add_customer">Tạo mới</button>
-                                                <!--<button class="btn_cancel" id="btn_cancel_add_product">Hủy</button>-->
                                             </div>
                                             </form>
                                         </div>
@@ -226,7 +225,7 @@
                                         }
                                     }) 
                                      
-                                </script>
+                                </script>-->
                                 <!--BẢNG DANH SÁCH KHÁCH HÀNG -->
                                 <table class="table table-bordered" /*id="dataTable"*/ width="100%" cellspacing="0">
                                     <thead >
