@@ -23,7 +23,7 @@
     <!-- Custom styles for this template-->
     <link href="css/css/sb-admin-2.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link href="css/style.css" type="text/css" rel="stylesheet">
+    <link href="css/css/style.css" type="text/css" rel="stylesheet">
 </head>
 
 <body id="page-top">
@@ -146,7 +146,7 @@
                 <div class="container-fluid">
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">SẢN PHẨM</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">DANH SÁCH SẢN PHẨM</h6>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -171,13 +171,14 @@
                                         <div class="add_modal_body">
                                             <form action="verify_add_categories_product.php" method="POST" id="add_categories_product_form">
                                             <table>
+                                                <tr><span style="color:red;padding-left: 10px;">(*)</span> : Thông tin bắt buộc</tr>
                                                 <tr>
-                                                   <td><label for="maloai">Mã loại<span style="color:red;"> (*)</span> :</label></td>
-                                                    <td><input type="textbox" class="txtbox" id="maloai" name="maloai" required></td> 
+                                                    <td><label for="maloai">Mã loại<span style="color:red;"> (*)</span> :</label></td>
+                                                    <td><input type="textbox" class="txtbox" id="maloai" name="maloai" required placeholder="Nhập không quá 6 ký tự..."></td> 
                                                 </tr>
                                                 <tr>
                                                     <td><label for="tenloai">Tên loại<span style="color:red;"> (*)</span> :</label></td>
-                                                    <td><input type="textbox" class="txtbox" id="tenloai" name="tenloai" required></td> 
+                                                    <td><input type="textbox" class="txtbox" id="tenloai" name="tenloai" required placeholder="Nhập không quá 50 ký tự..."></td> 
                                                 </tr>
                                             </table>
                                         <div class="add_modal_footer">
@@ -221,6 +222,7 @@
                                         <div class="add_modal_body">
                                             <form class="add_form" name="add_product_form" id="add_product_form" method="POST" action="verify_add_product.php">
                                                 <table>
+                                                    <tr><span style="color:red;padding-left: 10px;">(*)</span> : Thông tin bắt buộc</tr>
                                                     <tr>
                                                         <td><label for="masp">Mã sản phẩm<span style="color:red;"> (*)</span> :</label></td>
                                                         <td><input type="textbox" class="txtbox" id="masp" name="masp" required></td> 
@@ -333,7 +335,7 @@
                                         </tr>
                                     </thead>
                                     <?php
-                                        include("connect.php");
+                                        
                                         $sql = "SELECT * FROM `tbl_sanpham`"; 
                                         
                                         $exec = mysqli_query($conn,$sql);

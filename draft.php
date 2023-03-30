@@ -11,10 +11,16 @@
     $exec = mysqli_query($conn,$sql);
     $code = mysqli_fetch_object($exec) -> MaKH;
 
-    echo ++$code;
+    $makh = (string) ++$code;
+    
+    $sql = "INSERT INTO `tbl_khachhang`(`MaKH`, `TenKH`, `SDT`, `DiaChi`) 
+                VALUES ('".$makh."','Nguyen Phuong Anh','0973846571','VAN PHUC')";
+    
+    $exec = mysqli_query($conn,$sql);
 
 ;?>
-<div class="add_min_modal">
+
+<!--<div class="add_min_modal">
                                     <div class="add_min_modal_inner">
                                         <div class="add_modal_header">
                                             <p>Thêm loại sản phẩm</p>
@@ -40,4 +46,4 @@
                                             </form>
                                         </div>
                                     </div>
-                                </div>
+                                </div>-->

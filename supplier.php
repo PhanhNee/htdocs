@@ -2,7 +2,7 @@
     session_start();
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 
 <head>
 
@@ -12,7 +12,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>JUNO - Customer</title>
+    <title>JUNO - Supplier</title>
 
     <!-- Custom fonts for this template-->
     <link href="css/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -24,6 +24,7 @@
     <link href="css/css/sb-admin-2.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="css/css/style.css" type="text/css" rel="stylesheet">
+    <meta charset="utf-8"/>
 </head>
 
 <body id="page-top">
@@ -146,7 +147,7 @@
                 <div class="container-fluid">
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">DANH SÁCH KHÁCH HÀNG</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">DANH SÁCH NHÀ CUNG CẤP</h6>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -156,92 +157,71 @@
                                         Tìm kiếm:
                                         <input class="form-control form-control-sm"></input>
                                     </label>
-                                    <button class="add_button" id="btn_add_customer" style="width: 140px;">Thêm khách hàng</button>
+                                    <button class="add_button" id="btn_add_supplier" style="height:30px; width:150px">Thêm nhà cung cấp</button>
                                 </div>
-                                <!--POPUP THÊM MỚI KHÁCH HÀNG-->
-                                <div class="add_modal" id="add_customer_modal">
+                                <!--POPUP THÊM MỚI NHÀ CUNG CẤP -->
+                                <div class="add_modal">
                                     <div class="add_modal_inner">
                                         <!--HEADER POPUP -->
                                         <div class="add_modal_header">
-                                        <p>Thêm mới khách hàng</p>
-                                        <button class="btn_close" id="close_add_customer">
+                                        <p>Thêm mới nhà cung cấp</p>
+                                        <button class="btn_close" id="close_add_supplier">
                                         <i class="fas fa-times"></i>
                                         </button>
                                     </div>
                                         <div class="add_modal_body">
-                                            <form class="add_form" name="add_customer_form" id="add_customer_form" method="POST" action="verify_add_customer.php">
+                                            <form class="add_form" name="add_supplier_form" id="add_supplier_form" method="POST" action="verify_add_supplier.php">
                                                 <table>
+                                                    <tr><span style="color:red;padding-left: 10px;">(*)</span> : Thông tin bắt buộc</tr>
                                                     <tr>
-                                                        <td><label for="makh">Mã khách hàng<span style="color:red;"> (*)</span> :</label></td>
-                                                        <?php
-                                                                include("connect.php");
-                                                                $sql = "SELECT MaKH FROM `tbl_khachhang` WHERE NgayTao = (SELECT MAX(NgayTao) FROM tbl_khachhang)"; 
-                                        
-                                                                $exec = mysqli_query($conn,$sql);
-                                                                
-                                                                $code = mysqli_fetch_object($exec) -> MaKH;
-                                                                    
-                                                                ;?>
-                                                        <td><input type="textbox" class="txtbox" id="makh" name="makh" disabled="disabled" value="<?php echo ++$code ;?>"></td>
-                                                        <?php
-                                                                mysqli_close($conn);
-                                                        ?> 
-                                                        <td><label for="tenkh">Tên khách hàng<span style="color:red;"> (*)</span> : </label></td>
-                                                        <td><input type="textbox" class="txtbox" id="tenkh" name="tenkh" required></td>
+                                                        <td><label for="mancc">Mã nhà cung cấp<span style="color:red;"> (*)</span> :</label></td>
+                                                        <td><input type="textbox" class="txtbox" id="mancc" name="mancc" required placeholder="Nhập không quá 6 ký tự..."></td> 
                                                     </tr>
                                                     <tr>
-                                                        <td><label for="sdt">Số điện thoại<span style="color:red;"> (*)</span> : </label></td>
-                                                        <td><input type="textbox" class="txtbox" id="sdt" name="sdt" required></td>
-                                                        <td><label for="diachi">Địa chỉ: </label></td>
+                                                        <td><label for="tenncc">Tên nhà cung cấp<span style="color:red;"> (*)</span> : </label></td>
+                                                        <td><input type="textbox" class="txtbox" id="tenncc" name="tenncc" required placeholder="Nhập không quá 50 ký tự..."></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><label for="sdt">Số điện thoại<span style="color:red;"> (*)</span> :</label></td>
+                                                        <td><input type="textbox" class="txtbox" id="sdt" name="sdt" required placeholder="Nhập không quá 10 ký tự..."></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><label for="diachi">Địa chỉ :</label></td>
                                                         <td><input type="textbox" class="txtbox" id="diachi" name="diachi"></td>
                                                     </tr>
-                                                    <tr></tr>             
+                                                    <tr></tr>            
                                                 </table>
                                             <div class="add_modal_footer">
-                                                <button class="btn_save" id="btn_save_add_customer">Tạo mới</button>
-                                                <!--<button class="btn_cancel" id="btn_cancel_add_product">Hủy</button>-->
+                                                <button class="btn_save" id="btn_save_add_supplier">Tạo mới</button>
                                             </div>
                                             </form>
                                         </div>
                                     </div>   
                                 </div>
                                 <script>
-                                    //Chọn thêm sản phẩm, hiển thị popup thêm khách hàng
-                                    document.getElementById("btn_add_customer").addEventListener("click",function(){
-                                        document.querySelector(".add_modal").style.display = "flex"; 
+                                    //Chọn thêm nhà cung cấp, hiển thị popup thêm nhà cung cấp
+                                    document.getElementById("btn_add_supplier").addEventListener("click",function(){
+                                        document.querySelector(".add_modal").style.display = "flex";    
                                     })
-                                    document.getElementById("close_add_customer").addEventListener("click",function(){
-                                        document.querySelector(".add_modal").style.display ="none";
-                                    })
-                                    document.getElementById("btn_save_add_customer").addEventListener("click",function(){
-                                        if (document.forms["add_customer_form"]["tenkh"].value =="")
-                                        {
-                                            document.getElementById("tenkh").style.borderColor ="red";
-                                            document.getElementById("tenkh").focus();
-                                        }
-                                        if (document.forms["add_customer_form"]["sdt"].value =="")
-                                        {
-                                            document.getElementById("sdt").style.borderColor ="red";
-                                            document.getElementById("sdt").focus();
-                                        }
+                                    //Đóng popup thêm sản phẩm
+                                    document.getElementById("close_add_supplier").addEventListener("click",function(){
+                                        document.querySelector(".add_modal").style.display = "none";    
                                     }) 
-                                     
                                 </script>
-                                <!--BẢNG DANH SÁCH KHÁCH HÀNG -->
+                                <!--BẢNG DANH SÁCH NHÀ CUNG CẤP -->
                                 <table class="table table-bordered" /*id="dataTable"*/ width="100%" cellspacing="0">
                                     <thead >
                                         <tr>
-                                            <th><center>Mã KH</center></th>
-                                            <th><center>Tên KH</center></th>
+                                            <th><center>Mã NCC</center></th>
+                                            <th><center>Tên NCC</center></th>
                                             <th><center>Số điện thoại</center></th>
                                             <th><center>Địa chỉ</center></th>
-                                            <th><center>Ngày tạo</center></th>
                                             <th></th>
                                         </tr>
                                     </thead>
                                     <?php
                                         include("connect.php");
-                                        $sql = "SELECT * FROM `tbl_khachhang`"; 
+                                        $sql = "SELECT * FROM `tbl_nhacungcap`"; 
                                         
                                         $exec = mysqli_query($conn,$sql);
                                         $num_rows = mysqli_num_rows($exec);
@@ -251,17 +231,15 @@
                                     ;?>
                                     <tbody>
                                         <tr>
-                                            <td><center><?php echo $row["MaKH"] ;?></center></td>
-                                            <td><?php echo $row["TenKH"] ;?></td>
+                                            <td><center><?php echo $row["MaNCC"] ;?></center></td>
+                                            <td><?php echo $row["TenNCC"] ;?></td>
                                             <td><center><?php echo $row["SDT"] ;?></center></td>
                                             <td><center><?php echo $row["DiaChi"] ;?></center></td>
-                                            <td><center><?php echo $row["NgayTao"] ;?></center></td>
-                                            
                                             <th>
-                                                <button class="view_button" id="view_customer" title="Xem chi tiết" onclick="openModal()">
-                                                  <i class="fas fa-fw fa-eye"></i>
+                                                <button class="view_button" id="view" title="Xem chi tiết" onclick="openModal()">
+                                                    <i class="fas fa-fw fa-eye"></i>
                                                 </button>
-                                                <button class="edit_button" id="edit_customer">
+                                                <button class="edit_button" id="edit">
                                                     <i class="fa fa-pencil-square-o" title="Chỉnh sửa"></i>
                                                 </button>
                                             </th>
@@ -270,6 +248,11 @@
                                             }
                                             mysqli_close($conn);
                                         ?>
+                                        <script>
+                                            document.getElementById("view").addEventListener("click",function(){
+                                                document.querySelector("supplier_details").style.display ="flex";
+                                            })
+                                        </script>
                                     </tbody>
                                 </table>    
                             </div>
@@ -307,7 +290,7 @@
         </div>
     </div>
 
-                                            
+    
     <!-- Bootstrap core JavaScript-->
     <script src="css/vendor/jquery/jquery.min.js"></script>
     <script src="css/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
