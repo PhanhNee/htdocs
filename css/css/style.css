@@ -1,0 +1,156 @@
+*
+        {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body
+        {
+            height: 100%;
+            overflow: hidden;
+            background: white;
+        }
+        .search_box{
+            margin:15px 0px 15px 0px;
+        }
+        .add_button
+        {
+            border-radius: 5px;
+            border: 0px;
+            width: 150px;
+            height: 30px;
+            color: white;
+            background-color: green;
+            margin: 5px 5px 5px 5px;
+            cursor:pointer;
+        }
+        .add_button:hover{
+            background-color: #4eff4e;
+        }
+
+        .view_button
+        {
+            border-radius: 5px;
+            border: 0px;
+            width: 45%;
+            font-style: normal;
+            color: white;
+            background-color: green;
+            cursor:pointer;
+        }   
+        .edit_button
+        {
+            border-radius: 5px;
+            border: 0px;
+            width: 45%;
+            font-style: normal;
+            color: white;
+            background-color: gray;
+            cursor: pointer;
+        } 
+        .add_modal{
+            background-color: #e6e9f4;
+            display: none;
+            position: fixed;
+            top: 250px;
+            left: 460px;
+        }
+        .add_modal_inner{
+            position: relative;
+            margin: auto;
+            border-radius: 10px;
+        }
+        .add_modal_header{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #4e73df;
+            color: white;
+            font-weight: bold;
+        }
+        .add_modal_header p{
+            margin: 0px 0px 0px 0px;
+            padding: 15px 10px 15px 10px;           
+        }
+        .add_modal_body{
+            background-color: #e6e9f4;
+            border: none;
+            position: relative;
+            color: gray;
+            font-weight: bolder;
+        }
+        .add_modal_footer{
+            background-color:#e6e9f4;
+            padding: 8px 8px 8px 8px;
+            border: none;
+            text-align: right;
+        }
+
+        .btn_close{
+            width: 40px;
+            height: 40px;
+            border: none;
+            outline: none;
+            background-color: #4e73df;            
+            cursor: pointer;
+            color: white;
+            font-weight: bold;
+        }
+        .btn_close:hover{
+            color: red;
+        }
+
+
+        .add_modal label{
+            margin: 0;
+            padding-left: 10px;
+        }
+        .txtbox{
+            margin: 8px 8px 8px 8px;
+            outline: none;
+            width: 260px;
+            height: 30px;
+        }
+        .file_box{
+            margin:8px 8px 8px 8px;
+            height:25px;
+            width:92%;
+        }
+        .dropdown_box{
+            margin:8px 8px 8px 8px;
+            height:30px;
+            width:94%;
+        }
+        
+
+
+        .btn_save{
+            background-color: green;
+            outline: none;
+            border: none;
+            border-radius: 5px;
+            width: 80px;
+            height: 35px;
+            cursor: pointer;
+            color: white;
+            font-weight: bold;
+        }
+        .btn_save:hover{
+            background-color: #4eff4e;
+        }
+        
+        #btn_add_categories_product{
+            width: 50px;
+            border-radius: 5px;
+            border: 0px;
+            height: 30px;
+            font-style: normal;
+            color: white;
+            background-color: #cc0000;
+            margin: 5px 1px 1px 5px;
+            cursor:pointer;
+        }
+        #tbl_chitiet_hoadon td{
+            padding: 2px 2px 2px 2px;
+        }
+        
