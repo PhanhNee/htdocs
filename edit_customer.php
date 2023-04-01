@@ -12,7 +12,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>JUNO - Invoice</title>
+    <title>JUNO - Customer</title>
 
     <!-- Custom fonts for this template-->
     <link href="css/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -143,10 +143,11 @@
 
                     </ul>
                 </nav>
+        
                 <div class="container-fluid">
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">DANH SÁCH HÓA ĐƠN</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">DANH SÁCH KHÁCH HÀNG</h6>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -156,105 +157,24 @@
                                         Tìm kiếm:
                                         <input class="form-control form-control-sm"></input>
                                     </label>
-                                    <button class="add_button" id="btn_add_invoice">Thêm hóa đơn</button>
+                                    <!--<button class="add_button" id="btn_add_customer" style="width: 140px;">Thêm khách hàng</button>-->
                                 </div>
-                                <!--POPUP THÊM MỚI HÓA ĐƠN -->
-                                <div class="add_modal" id="add_invoice_modal">
-                                    <div class="add_modal_inner">
-                                        <!--HEADER POPUP -->
-                                        <div class="add_modal_header">
-                                        <p>Thêm mới hóa đơn</p>
-                                        <button class="btn_close" id="close_add_invoice">
-                                        <i class="fas fa-times"></i>
-                                        </button>
-                                    </div>
-                                        <div class="add_modal_body">
-                                            <form class="add_form" name="add_invoice_form" id="add_invoice_form" method="POST" action="verify_add_invoice.php">
-                                                <table>
-                                                    <tr>
-                                                        <td><label for="sdt">Số điện thoại<span style="color:red;"> (*)</span> :</label></td>
-                                                        <td><input type="textbox" class="txtbox" id="sdt" name="sdt" style="width:212px;"><button><i class="fa fa-search" style="width:35px;height:100%;color:black;border:0;"></button></i></td>
-                                                        <td><label for="makh">Mã KH<span style="color:red;"> (*)</span> :</label></td>
-                                                        <td><input type="textbox" class="txtbox" id="makh" name="makh"></td>
-                                                    </tr>     
-                                                    <tr>
-                                                        <td><label for="tenkh">Tên khách hàng<span style="color:red;"> (*)</span> :</label></td>
-                                                        <td><input type="textbox" class="txtbox" id="tenkh" name="tenkh"></td>
-                                                        <td><label for="diachi">Địa chỉ:</label></td>
-                                                        <td><input type="textbox" class="txtbox" id="diachi" name="diachi"></td>
-                                                    </tr>     
-                                                    <tr>
-                                                        <td><label for="manv" style="width: 160px;">Người lập<span style="color:red;"> (*)</span> :</label></td>
-                                                        <td>
-                                                            <select class="dropdown_box" name="manv" id="manv" disabled="disabled">
-                                                                <?php
-                                                                    include("connect.php");
-                                                                    $sql = "SELECT * FROM `tbl_nhanvien` WHERE MaNV = '".$_SESSION["username"]."'"; 
-                                        
-                                                                    $exec = mysqli_query($conn,$sql);
-                                                                    $num_rows = mysqli_num_rows($exec);
-                            
-                                                                    while($row = mysqli_fetch_array($exec))
-                                                                    {
-                                                                ;?>
-                                                                <option value="<?php echo $row["MaNV"] ;?>"><?php echo $row["MaNV"] ;?> - <?php echo $row["TenNV"] ;?></option>
-                                                                <?php
-                                                                    } 
-                                                                ;?>
-                                                            </select>
-                                                        </td>
-                                                    </tr> 
-                                                </table>   
-                                            </form>
-                                            <form>
-                                                <table id="tbl_chitiet_hoadon" style="width:100%;border-style: groove;">
-                                                    <tr>
-                                                        <th>Mã sản phẩm</th>
-                                                        <th>Tên sản phẩm</th>
-                                                        <th>Số lượng</th>
-                                                        <th>Thành tiền</th>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>January</td>
-                                                        <td>$100</td>
-                                                        <td>January</td>
-                                                        <td>$100</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>February</td>
-                                                        <td>$80</td>
-                                                        <td>February</td>
-                                                        <td>$80</td>
-                                                    </tr>
-                                                </table>
-                                            </form>
-                                        </div>
-                                    </div>   
-                                </div>
-                                <script>
-                                    //Chọn thêm hóa đơn, hiển thị popup thêm hóa đơn
-                                    document.getElementById("btn_add_invoice").addEventListener("click",function(){
-                                        document.querySelector("#add_invoice_modal").style.display = "flex"; 
-                                    })
-                                    //Đóng popup thêm hóa đơn
-                                    document.getElementById("close_add_invoice").addEventListener("click",function(){
-                                        document.querySelector("#add_invoice_modal").style.display = "none";    
-                                    })   
-                                </script>
-                                <!--BẢNG DANH SÁCH HÓA ĐƠN -->
+                                                        
+                                <!--BẢNG DANH SÁCH KHÁCH HÀNG -->
                                 <table class="table table-bordered" /*id="dataTable"*/ width="100%" cellspacing="0">
                                     <thead >
                                         <tr>
-                                            <th><center>Mã hóa đơn</center></th>
-                                            <th><center>Ngày lập</center></th>
-                                            <th><center>Mã nhân viên</center></th>
-                                            <th><center>Mã khách hàng</center></th>
+                                            <th><center>Mã KH</center></th>
+                                            <th><center>Tên KH</center></th>
+                                            <th><center>Số điện thoại</center></th>
+                                            <th><center>Địa chỉ</center></th>
+                                            <th><center>Ngày tạo</center></th>
                                             <th></th>
                                         </tr>
                                     </thead>
                                     <?php
-                                        
-                                        $sql = "SELECT * FROM `tbl_hoadon`"; 
+                                        include("connect.php");
+                                        $sql = "SELECT * FROM `tbl_khachhang`"; 
                                         
                                         $exec = mysqli_query($conn,$sql);
                                         $num_rows = mysqli_num_rows($exec);
@@ -264,17 +184,16 @@
                                     ;?>
                                     <tbody>
                                         <tr>
-                                            <td><center><?php echo $row["MaHD"] ;?></center></td>
                                             <td><center><?php echo $row["MaKH"] ;?></center></td>
-                                            <td><center><?php echo $row["MaNV"] ;?></center></td>
-                                            <td><center><?php echo $row["NgayLap"] ;?></center></td>
+                                            <td><?php echo $row["TenKH"] ;?></td>
+                                            <td><center><?php echo $row["SDT"] ;?></center></td>
+                                            <td><center><?php echo $row["DiaChi"] ;?></center></td>
+                                            <td><center><?php echo $row["NgayTao"] ;?></center></td>
+                                            
                                             <th>
-                                                <button class="view_button" id="view_product" title="Xem chi tiết" onclick="openModal()">
-                                                    <i class="fas fa-fw fa-eye"></i>
-                                                </button>
-                                                <button class="edit_button" id="edit_product">
-                                                    <i class="fa fa-pencil-square-o" title="Chỉnh sửa"></i>
-                                                </button>
+                                                <center><button class="edit_button" id="edit_customer" style="width: 80px;">
+                                                    <a href="edit_customer.php?id=<?php echo $row['MaKH'] ;?>">Chỉnh sửa</a>
+                                                </button></center>
                                             </th>
                                         </tr>
                                         <?php
@@ -290,6 +209,59 @@
             </div>
         </div>
     </div>
+    <div class="add_modal" id="edit_customer_modal" style="display:flex;">
+        <div class="add_modal_inner">
+            <div class="add_modal_header">
+                <p>Chỉnh sửa thông tin khách hàng</p>
+                <button class="btn_close" id="close_edit_customer">
+                    <i class="fas fa-times"></i>
+                </button>                           
+            </div>
+            <div class="add_modal_body">
+            <form class="add_form" name="edit_customer_form" id="edit_customer_form" method="POST" action="verify_edit_customer.php">
+                <table>
+                    <?php
+                        $makh = $_GET["id"];
+                        include("connect.php");
+                        $sql = "SELECT * FROM `tbl_khachhang` WHERE MaKH = '".$makh."'"; 
+                                        
+                        $exec = mysqli_query($conn,$sql);
+                                                                
+                        $row = mysqli_fetch_array($exec);
+                    ;?>
+                    <tr>
+                        <td><label for="makh">Mã khách hàng<span style="color:red;"> (*)</span> :</label></td>
+                        <td><input type="textbox" class="txtbox" id="makh" name="makh" value="<?php echo $row['MaKH'];?>"></td>
+                        <td><label for="tenkh">Tên khách hàng<span style="color:red;"> (*)</span> : </label></td>
+                        <td><input type="textbox" class="txtbox" id="tenkh" name="tenkh" required value="<?php echo $row['TenKH'] ;?>"></td>
+                    </tr>
+                    <tr>
+                        <td><label for="sdt">Số điện thoại<span style="color:red;"> (*)</span> : </label></td>
+                        <td><input type="textbox" class="txtbox" id="sdt" name="sdt" required value="<?php echo $row['SDT'] ;?>"></td>
+                        <td><label for="diachi">Địa chỉ: </label></td>
+                        <td><input type="textbox" class="txtbox" id="diachi" name="diachi" value="<?php echo $row['DiaChi'] ;?>"></td>
+                    </tr>
+                    <tr></tr>             
+                 </table>
+            <div class="add_modal_footer">
+                <button class="btn_save" id="btn_save_edit_customer">Cập nhật</button>
+            </div>
+            </form>
+        </div>
+    </div>   
+</div>
+                <?php
+                        mysqli_close($conn);
+                    ?>
+<script>
+    if(document.forms["edit_customer_form"]["tenkh"].value ==""){
+        document.getElementById("tenkh").style.borderColor = "red";
+    }
+    document.getElementById("close_edit_customer").addEventListener("click",function(){
+        document.querySelector("#edit_customer_modal").style.display = "none";
+        window.location.href="customer.php";
+    })
+</script>
     <footer class="sticky-footer bg-white">
         <div class="container my-auto">
             <div class="copyright text-center my-auto">

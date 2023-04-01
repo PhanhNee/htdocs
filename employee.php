@@ -48,7 +48,7 @@
                     <span>Hóa đơn</span></a>
             </li>
              <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="warehouse.php">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Quản lý xuất / nhập kho</span></a>
             </li>
@@ -187,7 +187,6 @@
                                                         <td><input type="textbox" class="txtbox" id="manv" name="manv" disabled="disabled" value="<?php echo ++$code ;?>"></td>
                                                         <td><label for="sdt">Giới tính<span style="color:red;"> (*)</span> :</label></td>
                                                         <td><select class="dropdown_box" id="gioitinh" name="gioitinh">
-                                                                <option>Khác</option>
                                                                 <option>Nam</option>
                                                                 <option>Nữ</option>
                                                             </select>
@@ -300,10 +299,10 @@
                                             <td><center><?php echo $row["MaPB"] ;?></center></td>
                                             <th>
                                                 <button class="view_button" id="view" title="Xem chi tiết">
-                                                    <i class="fas fa-fw fa-eye"></i>
+                                                    <a href="view_employee_detail.php?id=<?php echo $row['MaNV'];?>">Chi tiết</a>
                                                 </button>
                                                 <button class="edit_button" id="edit">
-                                                    <i class="fa fa-pencil-square-o" title="Chỉnh sửa"></i>
+                                                    <a href="edit_employee.php?id=<?php echo $row['MaNV'];?>">Chỉnh sửa</a>
                                                 </button>
                                             </th>
                                         </tr>
@@ -311,11 +310,6 @@
                                             }
                                             mysqli_close($conn);
                                         ?>
-                                        <script>
-                                            document.getElementById("view").addEventListener("click",function(){
-                                                document.querySelector("supplier_details").style.display ="flex";
-                                            })
-                                        </script>
                                     </tbody>
                                 </table>    
                             </div>

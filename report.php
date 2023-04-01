@@ -12,7 +12,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>JUNO - Invoice</title>
+    <title>JUNO - Report</title>
 
     <!-- Custom fonts for this template-->
     <link href="css/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -146,7 +146,7 @@
                 <div class="container-fluid">
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">DANH SÁCH HÓA ĐƠN</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">XUẤT BÁO CÁO</h6>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -156,34 +156,45 @@
                                         Tìm kiếm:
                                         <input class="form-control form-control-sm"></input>
                                     </label>
-                                    <button class="add_button" id="btn_add_invoice">Thêm hóa đơn</button>
+                                    <button class="add_button" id="btn_add_report">Thêm báo cáo</button>
                                 </div>
-                                <!--POPUP THÊM MỚI HÓA ĐƠN -->
-                                <div class="add_modal" id="add_invoice_modal">
+                                <script>
+                                         document.getElementById("btn_add_report").addEventListener("click",function(){
+                                        document.forms["add_report_form"]["tungay"].value ="";
+                                        document.forms["add_report_form"]["denngay"].value ="";
+                                        document.querySelector("#add_report_modal").style.display = "flex"; 
+                                        })
+                                </script>
+                                <!--POPUP THÊM MỚI BÁO CÁO -->
+                                <div class="add_modal" id="add_report_modal">
                                     <div class="add_modal_inner">
                                         <!--HEADER POPUP -->
                                         <div class="add_modal_header">
-                                        <p>Thêm mới hóa đơn</p>
-                                        <button class="btn_close" id="close_add_invoice">
+                                        <p>Thêm mới báo cáo</p>
+                                        <button class="btn_close" id="close_add_report">
                                         <i class="fas fa-times"></i>
                                         </button>
                                     </div>
+                                    <script>
+                                        document.getElementById("close_add_report").addEventListener("click",function(){
+                                        document.querySelector("#add_report_modal").style.display = "none";
+                                            
+                                        })   
+                                    </script>
                                         <div class="add_modal_body">
-                                            <form class="add_form" name="add_invoice_form" id="add_invoice_form" method="POST" action="verify_add_invoice.php">
+                                            <form class="add_form" name="add_report_form" id="add_report_form" method="POST" action="verify_add_report.php">
                                                 <table>
+                                                    <tr><span style="color:red;padding-left: 10px;">(*)</span> : Thông tin bắt buộc</tr>
                                                     <tr>
-                                                        <td><label for="sdt">Số điện thoại<span style="color:red;"> (*)</span> :</label></td>
-                                                        <td><input type="textbox" class="txtbox" id="sdt" name="sdt" style="width:212px;"><button><i class="fa fa-search" style="width:35px;height:100%;color:black;border:0;"></button></i></td>
-                                                        <td><label for="makh">Mã KH<span style="color:red;"> (*)</span> :</label></td>
-                                                        <td><input type="textbox" class="txtbox" id="makh" name="makh"></td>
-                                                    </tr>     
-                                                    <tr>
-                                                        <td><label for="tenkh">Tên khách hàng<span style="color:red;"> (*)</span> :</label></td>
-                                                        <td><input type="textbox" class="txtbox" id="tenkh" name="tenkh"></td>
-                                                        <td><label for="diachi">Địa chỉ:</label></td>
-                                                        <td><input type="textbox" class="txtbox" id="diachi" name="diachi"></td>
-                                                    </tr>     
-                                                    <tr>
+                                                        <td><label for="tenbaocao">Tên báo cáo<span style="color:red;"> (*)</span> :</label></td>
+                                                        <td>
+                                                            <select class="dropdown_box" name="tenbaocao" id="tenbaocao" style="width:260px;">
+                                                                <option>Báo cáo doanh thu</option>
+                                                                <option>Báo cáo tồn kho</option>
+                                                                <option>Báo cáo nhập kho</option>
+                                                                <option>Báo cáo xuất kho</option>
+                                                            </select>
+                                                        </td>
                                                         <td><label for="manv" style="width: 160px;">Người lập<span style="color:red;"> (*)</span> :</label></td>
                                                         <td>
                                                             <select class="dropdown_box" name="manv" id="manv" disabled="disabled">
@@ -203,58 +214,48 @@
                                                                 ;?>
                                                             </select>
                                                         </td>
-                                                    </tr> 
-                                                </table>   
-                                            </form>
-                                            <form>
-                                                <table id="tbl_chitiet_hoadon" style="width:100%;border-style: groove;">
-                                                    <tr>
-                                                        <th>Mã sản phẩm</th>
-                                                        <th>Tên sản phẩm</th>
-                                                        <th>Số lượng</th>
-                                                        <th>Thành tiền</th>
                                                     </tr>
                                                     <tr>
-                                                        <td>January</td>
-                                                        <td>$100</td>
-                                                        <td>January</td>
-                                                        <td>$100</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>February</td>
-                                                        <td>$80</td>
-                                                        <td>February</td>
-                                                        <td>$80</td>
+                                                        <td><label for="tungay">Từ ngày<span style="color:red;"> (*)</span> :</label></td>
+                                                        <td><input type="date" class="txtbox" id="tungay" name="tungay" required></td>
+                                                        <td><label for="denngay">Đến ngày<span style="color:red;"> (*)</span> :</label></td>
+                                                        <td><input type="date" class="txtbox" id="denngay" name="denngay" required></td>
                                                     </tr>
                                                 </table>
+                                            <div class="add_modal_footer">
+                                                <button class="btn_save" id="btn_save_add_report">Xuất file</button>
+                                            </div>
                                             </form>
                                         </div>
                                     </div>   
                                 </div>
                                 <script>
-                                    //Chọn thêm hóa đơn, hiển thị popup thêm hóa đơn
-                                    document.getElementById("btn_add_invoice").addEventListener("click",function(){
-                                        document.querySelector("#add_invoice_modal").style.display = "flex"; 
-                                    })
-                                    //Đóng popup thêm hóa đơn
-                                    document.getElementById("close_add_invoice").addEventListener("click",function(){
-                                        document.querySelector("#add_invoice_modal").style.display = "none";    
+                                        document.getElementById("btn_save_add_report").addEventListener("click",function(){
+                                        if(document.forms["add_report_form"]["tungay"].value =="")
+                                        {
+                                            document.getElementById("tungay").style.borderColor="red";
+                                        }
+                                        if(document.forms["add_report_form"]["denngay"].value =="")
+                                        {
+                                            document.getElementById("denngay").style.borderColor="red";
+                                        }
+
                                     })   
                                 </script>
-                                <!--BẢNG DANH SÁCH HÓA ĐƠN -->
+                                <!--BẢNG DANH SÁCH SẢN PHẨM -->
                                 <table class="table table-bordered" /*id="dataTable"*/ width="100%" cellspacing="0">
                                     <thead >
                                         <tr>
-                                            <th><center>Mã hóa đơn</center></th>
-                                            <th><center>Ngày lập</center></th>
+                                            <th><center>STT</center></th>
+                                            <th><center>Tên file báo cáo</center></th>
+                                            <th><center>Thời gian xuất báo cáo</center></th>
                                             <th><center>Mã nhân viên</center></th>
-                                            <th><center>Mã khách hàng</center></th>
                                             <th></th>
                                         </tr>
                                     </thead>
                                     <?php
                                         
-                                        $sql = "SELECT * FROM `tbl_hoadon`"; 
+                                        $sql = "SELECT * FROM `tbl_baocao` ORDER BY MaFile DESC"; 
                                         
                                         $exec = mysqli_query($conn,$sql);
                                         $num_rows = mysqli_num_rows($exec);
@@ -264,16 +265,16 @@
                                     ;?>
                                     <tbody>
                                         <tr>
-                                            <td><center><?php echo $row["MaHD"] ;?></center></td>
-                                            <td><center><?php echo $row["MaKH"] ;?></center></td>
+                                            <td><center><?php echo $row["MaFile"] ;?></center></td>
+                                            <td><center><?php echo $row["TenFile"] ;?></center></td>
+                                            <td><center><?php echo $row["NgayXuat"] ;?></center></td>
                                             <td><center><?php echo $row["MaNV"] ;?></center></td>
-                                            <td><center><?php echo $row["NgayLap"] ;?></center></td>
                                             <th>
-                                                <button class="view_button" id="view_product" title="Xem chi tiết" onclick="openModal()">
-                                                    <i class="fas fa-fw fa-eye"></i>
+                                                <button class="view_button" id="download_file" title="Tải xuống">
+                                                    <i class="fas fa-fw fa-download"></i>
                                                 </button>
-                                                <button class="edit_button" id="edit_product">
-                                                    <i class="fa fa-pencil-square-o" title="Chỉnh sửa"></i>
+                                                <button class="edit_button" id="delete_file" title="Xóa file">
+                                                    <i class="fas fa-fw fa-trash"></i>
                                                 </button>
                                             </th>
                                         </tr>

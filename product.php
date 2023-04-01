@@ -47,7 +47,7 @@
                     <span>Hóa đơn</span></a>
             </li>
              <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="warehouse.php">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Quản lý xuất / nhập kho</span></a>
             </li>
@@ -294,6 +294,7 @@
                                     document.getElementById("btn_add_product").addEventListener("click",function(){
                                         document.querySelector("#add_product_modal").style.display = "flex"; 
                                     })
+                                    
                                     document.getElementById("btn_save_add_product").addEventListener("click",function(){
                                         if(document.forms["add_product_form"]["masp"].value =="")
                                         {
@@ -311,8 +312,6 @@
                                             document.getElementById("gia").focus();
                                         }  
                                     })   
-                                        
-                                    
                                     //Đóng popup thêm sản phẩm
                                     document.getElementById("close_add_product").addEventListener("click",function(){
                                         document.querySelector("#add_product_modal").style.display = "none";    
@@ -372,11 +371,11 @@
                                                     }
                                             ?>
                                             <th>
-                                                <button class="view_button" id="view_product" title="Xem chi tiết" onclick="openModal()">
-                                                    <a href="product.php?id=<?php echo $row['MaSP'];?>"><i class="fas fa-fw fa-eye"></i></a>
+                                                <button class="view_button" id="view_product" title="Xem chi tiết">
+                                                    <a href="draft2.php?id=<?php echo $row['MaSP'];?>">Xem</a>
                                                 </button>
                                                 <button class="edit_button" id="edit_product">
-                                                    <a href="product.php?id=<?php echo $row['MaSP'];?>"><i class="fa fa-pencil-square-o" title="Chỉnh sửa"></i></a>
+                                                    <a href="draft2.php?id=<?php echo $row['MaSP'];?>">Sua</a>
                                                 </button>
                                             </th>
                                         </tr>
@@ -384,11 +383,6 @@
                                             }
                                             mysqli_close($conn);
                                         ?>
-                                        <script>
-                                            document.getElementById("view").addEventListener("click",function(){
-                                                document.querySelector("product_details").style.display ="flex";
-                                            })
-                                        </script>
                                     </tbody>
                                 </table>    
                             </div>
@@ -398,6 +392,11 @@
             </div>
         </div>
     </div>
+
+
+
+
+
     <footer class="sticky-footer bg-white">
         <div class="container my-auto">
             <div class="copyright text-center my-auto">

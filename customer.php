@@ -47,7 +47,7 @@
                     <span>Hóa đơn</span></a>
             </li>
              <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="warehouse.php">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Quản lý xuất / nhập kho</span></a>
             </li>
@@ -143,6 +143,7 @@
 
                     </ul>
                 </nav>
+        
                 <div class="container-fluid">
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
@@ -158,74 +159,7 @@
                                     </label>
                                     <!--<button class="add_button" id="btn_add_customer" style="width: 140px;">Thêm khách hàng</button>-->
                                 </div>
-                                <!--POPUP THÊM MỚI KHÁCH HÀNG-->
-                                <!--<div class="add_modal" id="add_customer_modal">
-                                    <div class="add_modal_inner">
-                                       
-                                        <div class="add_modal_header">
-                                        <p>Thêm mới khách hàng</p>
-                                        <button class="btn_close" id="close_add_customer">
-                                        <i class="fas fa-times"></i>
-                                        </button>
-                                    </div>
-                                        <div class="add_modal_body">
-                                            <form class="add_form" name="add_customer_form" id="add_customer_form" method="POST" action="verify_add_customer.php">
-                                                <table>
-                                                    <tr>
-                                                        <td><label for="makh">Mã khách hàng<span style="color:red;"> (*)</span> :</label></td>
-                                                        <?php
-                                                                include("connect.php");
-                                                                $sql = "SELECT MaKH FROM `tbl_khachhang` WHERE NgayTao = (SELECT MAX(NgayTao) FROM tbl_khachhang)"; 
-                                        
-                                                                $exec = mysqli_query($conn,$sql);
-                                                                
-                                                                $code = mysqli_fetch_object($exec) -> MaKH;
-                                                                    
-                                                                ;?>
-                                                        <td><input type="textbox" class="txtbox" id="makh" name="makh" disabled="disabled" value="<?php echo ++$code ;?>"></td>
-                                                        <?php
-                                                                mysqli_close($conn);
-                                                        ?>
-                                                        <td><label for="tenkh">Tên khách hàng<span style="color:red;"> (*)</span> : </label></td>
-                                                        <td><input type="textbox" class="txtbox" id="tenkh" name="tenkh" required></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><label for="sdt">Số điện thoại<span style="color:red;"> (*)</span> : </label></td>
-                                                        <td><input type="textbox" class="txtbox" id="sdt" name="sdt" required></td>
-                                                        <td><label for="diachi">Địa chỉ: </label></td>
-                                                        <td><input type="textbox" class="txtbox" id="diachi" name="diachi"></td>
-                                                    </tr>
-                                                    <tr></tr>             
-                                                </table>
-                                            <div class="add_modal_footer">
-                                                <button class="btn_save" id="btn_save_add_customer">Tạo mới</button>
-                                            </div>
-                                            </form>
-                                        </div>
-                                    </div>   
-                                </div>
-                                <script>
-                                    //Chọn thêm sản phẩm, hiển thị popup thêm khách hàng
-                                    document.getElementById("btn_add_customer").addEventListener("click",function(){
-                                        document.querySelector(".add_modal").style.display = "flex"; 
-                                    })
-                                    document.getElementById("close_add_customer").addEventListener("click",function(){
-                                        document.querySelector(".add_modal").style.display ="none";
-                                    })
-                                    document.getElementById("btn_save_add_customer").addEventListener("click",function(){
-                                        if (document.forms["add_customer_form"]["tenkh"].value =="")
-                                        {
-                                            document.getElementById("tenkh").style.borderColor ="red";
-                                            document.getElementById("tenkh").focus();
-                                        }
-                                        if (document.forms["add_customer_form"]["sdt"].value =="")
-                                        {
-                                            document.getElementById("sdt").style.borderColor ="red";
-                                            document.getElementById("sdt").focus();
-                                        }
-                                    }) 
-                                     
-                                </script>-->
+                                                        
                                 <!--BẢNG DANH SÁCH KHÁCH HÀNG -->
                                 <table class="table table-bordered" /*id="dataTable"*/ width="100%" cellspacing="0">
                                     <thead >
@@ -255,14 +189,10 @@
                                             <td><center><?php echo $row["SDT"] ;?></center></td>
                                             <td><center><?php echo $row["DiaChi"] ;?></center></td>
                                             <td><center><?php echo $row["NgayTao"] ;?></center></td>
-                                            
                                             <th>
-                                                <button class="view_button" id="view_customer" title="Xem chi tiết" onclick="openModal()">
-                                                  <i class="fas fa-fw fa-eye"></i>
-                                                </button>
-                                                <button class="edit_button" id="edit_customer">
-                                                    <i class="fa fa-pencil-square-o" title="Chỉnh sửa"></i>
-                                                </button>
+                                                <center><button class="edit_button" id="edit_customer" style="width: 80px;">
+                                                    <a href="edit_customer.php?id=<?php echo $row['MaKH'] ;?>">Chỉnh sửa</a>
+                                                </button></center>
                                             </th>
                                         </tr>
                                         <?php
@@ -278,6 +208,7 @@
             </div>
         </div>
     </div>
+
     <footer class="sticky-footer bg-white">
         <div class="container my-auto">
             <div class="copyright text-center my-auto">

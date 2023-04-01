@@ -48,7 +48,7 @@
                     <span>Hóa đơn</span></a>
             </li>
              <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="warehouse.php">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Quản lý xuất / nhập kho</span></a>
             </li>
