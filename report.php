@@ -270,11 +270,11 @@
                                             <td><center><?php echo $row["NgayXuat"] ;?></center></td>
                                             <td><center><?php echo $row["MaNV"] ;?></center></td>
                                             <th>
-                                                <button class="view_button" id="download_file" title="Tải xuống">
-                                                    <i class="fas fa-fw fa-download"></i>
+                                                <button class="view_button" id="download_file" style="width:100px;">
+                                                    <a href="dowloadfile.php?id=<?php echo $row['MaFile'];?>">Tải xuống</a>
                                                 </button>
-                                                <button class="edit_button" id="delete_file" title="Xóa file">
-                                                    <i class="fas fa-fw fa-trash"></i>
+                                                <button class="edit_button" id="delete_file" style="background:red;">
+                                                    <a href="deletefile.php?id=<?php echo $row['MaFile'];?>">Xóa</a>
                                                 </button>
                                             </th>
                                         </tr>

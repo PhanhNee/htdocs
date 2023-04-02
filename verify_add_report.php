@@ -8,19 +8,19 @@
     
     if($tenbaocao =="Báo cáo doanh thu")
     {
-        $file_name = "doanhthu_".$tungay."toi".$denngay;
-        $table = "tbl_hoadon";
+        $file_name = "doanhthu_".$tungay."_".$denngay;
+        
     }else if($tenbaocao =="Báo cáo tồn kho")
     {
-        $file_name = "tonkho_".$tungay."toi".$denngay;
-        $table = "tbl_sanpham";
+        $file_name = "tonkho";
+        $sql = "SELECT * FROM tbl_sanpham";
     }else if($tenbaocao =="Báo cáo nhập kho")
     {
-        $file_name = "nhapkho_".$tungay."toi".$denngay;
-        $table = "tbl_phieuxuatnhapkho";
+        $file_name = "nhapkho_".$tungay."_".$denngay;
+        
     }else{
-        $file_name = "xuatkho_".$tungay."toi".$denngay;
-        $table = "tbl_phieuxuatnhapkho";
+        $file_name = "xuatkho_".$tungay."_".$denngay;
+        
     }
     
     $sql = "INSERT INTO `tbl_baocao`(`TenFile`,`MaNV`) VALUES ('".$file_name."','".$_SESSION["username"]."')";
