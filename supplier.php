@@ -236,7 +236,7 @@
                                             <td><center><?php echo $row["SDT"] ;?></center></td>
                                             <td><center><?php echo $row["DiaChi"] ;?></center></td>
                                             <th>
-                                                <center><button class="edit_button" id="edit">
+                                                <center><button class="edit_button" id="edit" style="width:80px;">
                                                     <a href="edit_supplier.php?id=<?php echo $row['MaNCC'];?>">Chỉnh sửa</a>
                                                 </button></center>
                                             </th>

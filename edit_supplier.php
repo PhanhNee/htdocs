@@ -164,7 +164,7 @@
                                     <div class="add_modal_inner">
                                         <!--HEADER POPUP -->
                                         <div class="add_modal_header">
-                                        <p>Thêm mới nhà cung cấp</p>
+                                        <p>Thông tin nhà cung cấp</p>
                                         <button class="btn_close" id="close_edit_supplier">
                                         <i class="fas fa-times"></i>
                                         </button>
@@ -207,10 +207,10 @@
                                     </div>   
                                 </div>
                                 <script>
-                                    //Đóng popup thêm sản phẩm
                                     document.getElementById("close_edit_supplier").addEventListener("click",function(){
-                                        document.querySelector("#edit_supplier").style.display = "none";    
-                                    }) 
+                                        document.querySelector("#edit_supplier").style.display = "none";
+                                        window.location.href("supplier.php");
+                                    })
                                 </script>
                                 <!--BẢNG DANH SÁCH NHÀ CUNG CẤP -->
                                 <table class="table table-bordered" /*id="dataTable"*/ width="100%" cellspacing="0">

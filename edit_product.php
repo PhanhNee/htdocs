@@ -210,111 +210,85 @@
                                             })
                                 </script>
                                 <!--POPUP THÊM MỚI SẢN PHẨM -->
-                                <div class="add_modal" id="add_product_modal">
+                                <div class="add_modal" id="edit_product_modal" style="display:flex;">
                                     <div class="add_modal_inner">
                                         <!--HEADER POPUP -->
                                         <div class="add_modal_header">
-                                        <p>Thêm mới sản phẩm</p>
-                                        <button class="btn_close" id="close_add_product">
+                                        <p>Thông tin sản phẩm</p>
+                                        <button class="btn_close" id="close_edit_product">
                                         <i class="fas fa-times"></i>
                                         </button>
                                     </div>
                                         <div class="add_modal_body">
-                                            <form class="add_form" name="add_product_form" id="add_product_form" method="POST" action="verify_add_product.php">
+                                            <form class="add_form" name="add_product_form" id="add_product_form" method="POST" action="verify_edit_product.php">
                                                 <table>
-                                                    <tr><span style="color:red;padding-left: 10px;">(*)</span> : Thông tin bắt buộc</tr>
+                                                        <?php
+                                                                $masp = $_GET["id"];
+                                                                include("connect.php");
+                                                                $sql = "SELECT * FROM `tbl_sanpham` where MaSP ='".$masp."'"; 
+                                        
+                                                                $exec = mysqli_query($conn,$sql);
+                                                                
+                                                                $row = mysqli_fetch_array($exec);
+                                                        
+                                                                ;?>
                                                     <tr>
                                                         <td><label for="masp">Mã sản phẩm<span style="color:red;"> (*)</span> :</label></td>
-                                                        <td><input type="textbox" class="txtbox" id="masp" name="masp" required></td> 
+                                                        <td><input type="textbox" class="txtbox" id="masp" name="masp" required value="<?php echo $row['MaSP'] ;?>"></td> 
                                                         <td><label for="trangthai">Trạng thái<span style="color:red;"> (*)</span> :</label></td>
-                                                        <td><select class="dropdown_box" id="trangthai" name="trangthai" disabled="disabled">
-                                                                <option>Hết hàng</option>
+                                                        <td><select class="dropdown_box" id="trangthai" name="trangthai" >
+                                                        <?php
+                                                            if($row["TonKho"] ==0)
+                                                            {
+                                                        ?>
+                                                            <option>Hết hàng</option>
+                                                        <?php
+                                                            }else if($row["TonKho"] >0)
+                                                            {
+                                                        ?>
+                                                            <option>Còn hàng</option>
+                                                            <?php
+                                                            }
+                                                        ?>
+                                                            <option>Ngừng bán</option>
                                                             </select>
                                                         </td>
                                                     </tr>
                                                     <tr>
                                                         <td><label for="tensp">Tên sản phẩm<span style="color:red;"> (*)</span> : </label></td>
-                                                        <td><input type="textbox" class="txtbox" id="tensp" name="tensp" required></td>
+                                                        <td><input type="textbox" class="txtbox" id="tensp" name="tensp" required value="<?php echo $row['TenSP'] ;?>"></td>
                                                         <td><label for="maloai">Mã loại<span style="color:red;"> (*)</span> :</label></td>
                                                         <td>
                                                             <select class="dropdown_box" name="maloai" id="maloai">
-                                                            <?php
-                                                                include("connect.php");
-                                                                $sql = "SELECT * FROM `tbl_loaisanpham`"; 
-                                        
-                                                                $exec = mysqli_query($conn,$sql);
-                                                                $num_rows = mysqli_num_rows($exec);
-
-                                                                while($row = mysqli_fetch_array($exec))
-                                                                    {
-                                                                ;?>
-                                                                <option value="<?php echo $row["MaLoai"] ;?>"><?php echo $row["MaLoai"] ;?> - <?php echo $row["TenLoai"] ;?></option>
-                                                                <?php
-                                                                    }
-                                                                ?>
+                                                                <option value="<?php echo $row["MaLoai"] ;?>"><?php echo $row["MaLoai"] ;?></option>
                                                             </select>
                                                         </td>
                                                     </tr>
                                                     <tr>
                                                         <td><label for="gia">Nguyên giá<span style="color:red;"> (*)</span> :</label></td>
-                                                        <td><input type="textbox" class="txtbox" id="gia" name="gia" required></td>
+                                                        <td><input type="textbox" class="txtbox" id="gia" name="gia" required value="<?php echo $row['NguyenGia'] ;?>"></td>
                                                         <td><label for="giakm">Giá khuyến mãi: </label></td>
-                                                        <td><input type="textbox" class="txtbox" id="giakm" name="giakm"></td>
+                                                        <td><input type="textbox" class="txtbox" id="giakm" name="giakm" value="<?php echo $row['GiaKM'] ;?>"></td>
                                                     </tr>
                                                     <tr>
                                                         <td><label for="mausac">Màu sắc:</label></td>
-                                                        <td><input type="textbox" class="txtbox" id="mausac" name="mausac"></td>
+                                                        <td><input type="textbox" class="txtbox" id="mausac" name="mausac" value="<?php echo $row['MauSac'] ;?>"></td>
                                                         <td><label for="kichthuoc">Kích thước:</label></td>
-                                                        <td><input type="textbox" class="txtbox" id="kichthuoc" name="kichthuoc"></td>
+                                                        <td><input type="textbox" class="txtbox" id="kichthuoc" name="kichthuoc" value="<?php echo $row['KichThuoc'] ;?>"></td>
                                                     </tr>
-                                                    <tr></tr>
-                                                    <tr>
-                                                        <td><label for="tonkho">Tồn kho<span style="color:red;"> (*)</span> :</label></td>
-                                                        <td><input type="textbox"  class="txtbox" id="tonkho" name="tonkho" value="0" disabled="disabled"></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><label for="anh1">Ảnh SP 1:</label></td>
-                                                        <td><input type="file" class="file_box" id="anh1" name="anh1"></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><label for="anh2">Ảnh SP 2:</label></td>
-                                                        <td><input type="file" class="file_box" id="anh2" name="anh2"></td>
-                                                    </tr>                
+                                                    <tr></tr>   
                                                 </table>
                                             <div class="add_modal_footer">
-                                                <button class="btn_save" id="btn_save_add_product">Tạo mới</button>
-                                                <!--<button class="btn_cancel" id="btn_cancel_add_product">Hủy</button>-->
+                                                <button class="btn_save" id="btn_save_edit_product">Cập nhật</button>
                                             </div>
                                             </form>
                                         </div>
                                     </div>   
                                 </div>
                                 <script>
-                                    //Chọn thêm sản phẩm, hiển thị popup thêm sản phẩm
-                                    document.getElementById("btn_add_product").addEventListener("click",function(){
-                                        document.querySelector("#add_product_modal").style.display = "flex"; 
-                                    })
-                                    
-                                    document.getElementById("btn_save_add_product").addEventListener("click",function(){
-                                        if(document.forms["add_product_form"]["masp"].value =="")
-                                        {
-                                            document.getElementById("masp").style.borderColor="red";
-                                            document.getElementById("masp").focus();
-                                        }
-                                        if(document.forms["add_product_form"]["tensp"].value =="")
-                                        {
-                                            document.getElementById("tensp").style.borderColor="red";
-                                            document.getElementById("tensp").focus();
-                                        }   
-                                        if(document.forms["add_product_form"]["gia"].value =="")
-                                        {
-                                            document.getElementById("gia").style.borderColor="red";
-                                            document.getElementById("gia").focus();
-                                        }  
-                                    })   
-                                    //Đóng popup thêm sản phẩm
-                                    document.getElementById("close_add_product").addEventListener("click",function(){
-                                        document.querySelector("#add_product_modal").style.display = "none";    
+                                    document.getElementById("close_edit_product").addEventListener("click",function(){
+                                        document.querySelector("#edit_product_modal").style.display = "none";
+                                        window.location.href("product.php");    
                                     })   
                                 </script>
                                 <!--BẢNG DANH SÁCH SẢN PHẨM -->
