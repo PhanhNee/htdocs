@@ -160,52 +160,56 @@
                                     <button class="add_button" id="btn_add_supplier" style="height:30px; width:150px">Thêm nhà cung cấp</button>
                                 </div>
                                 <!--POPUP THÊM MỚI NHÀ CUNG CẤP -->
-                                <div class="add_modal">
+                                <div class="add_modal" id ="edit_supplier" style="display:flex;">
                                     <div class="add_modal_inner">
                                         <!--HEADER POPUP -->
                                         <div class="add_modal_header">
                                         <p>Thêm mới nhà cung cấp</p>
-                                        <button class="btn_close" id="close_add_supplier">
+                                        <button class="btn_close" id="close_edit_supplier">
                                         <i class="fas fa-times"></i>
                                         </button>
                                     </div>
                                         <div class="add_modal_body">
-                                            <form class="add_form" name="add_supplier_form" id="add_supplier_form" method="POST" action="verify_add_supplier.php">
+                                            <form class="add_form" name="edit_supplier_form" id="edit_supplier_form" method="POST" action="verify_edit_supplier.php">
                                                 <table>
-                                                    <tr><span style="color:red;padding-left: 10px;">(*)</span> : Thông tin bắt buộc</tr>
+                                                    <?php
+                                                        include("connect.php");
+                                                        $mancc = $_GET['id'];
+
+                                                        $sql = "SELECT * FROM tbl_nhacungcap WHERE MaNCC = '".$mancc."'";
+
+                                                        $exec = mysqli_query($conn,$sql);
+                                                        $row = mysqli_fetch_array($exec);
+                                                    ;?>
                                                     <tr>
                                                         <td><label for="mancc">Mã nhà cung cấp<span style="color:red;"> (*)</span> :</label></td>
-                                                        <td><input type="textbox" class="txtbox" id="mancc" name="mancc" required placeholder="Nhập không quá 6 ký tự..."></td> 
+                                                        <td><input type="textbox" class="txtbox" id="mancc" name="mancc" required value="<?php echo $row['MaNCC'];?>"></td> 
                                                     </tr>
                                                     <tr>
                                                         <td><label for="tenncc">Tên nhà cung cấp<span style="color:red;"> (*)</span> : </label></td>
-                                                        <td><input type="textbox" class="txtbox" id="tenncc" name="tenncc" required placeholder="Nhập không quá 50 ký tự..."></td>
+                                                        <td><input type="textbox" class="txtbox" id="tenncc" name="tenncc" required value="<?php echo $row['TenNCC'];?>"></td>
                                                     </tr>
                                                     <tr>
                                                         <td><label for="sdt">Số điện thoại<span style="color:red;"> (*)</span> :</label></td>
-                                                        <td><input type="textbox" class="txtbox" id="sdt" name="sdt" required placeholder="Nhập không quá 10 ký tự..."></td>
+                                                        <td><input type="textbox" class="txtbox" id="sdt" name="sdt" required value="<?php echo $row['SDT'];?>"></td>
                                                     </tr>
                                                     <tr>
                                                         <td><label for="diachi">Địa chỉ :</label></td>
-                                                        <td><input type="textbox" class="txtbox" id="diachi" name="diachi"></td>
+                                                        <td><input type="textbox" class="txtbox" id="diachi" name="diachi" value="<?php echo $row['DiaChi'];?>"></td>
                                                     </tr>
                                                     <tr></tr>            
                                                 </table>
                                             <div class="add_modal_footer">
-                                                <button class="btn_save" id="btn_save_add_supplier">Tạo mới</button>
+                                                <button class="btn_save" id="btn_save_edit_supplier">Cập nhật</button>
                                             </div>
                                             </form>
                                         </div>
                                     </div>   
                                 </div>
                                 <script>
-                                    //Chọn thêm nhà cung cấp, hiển thị popup thêm nhà cung cấp
-                                    document.getElementById("btn_add_supplier").addEventListener("click",function(){
-                                        document.querySelector(".add_modal").style.display = "flex";    
-                                    })
                                     //Đóng popup thêm sản phẩm
-                                    document.getElementById("close_add_supplier").addEventListener("click",function(){
-                                        document.querySelector(".add_modal").style.display = "none";    
+                                    document.getElementById("close_edit_supplier").addEventListener("click",function(){
+                                        document.querySelector("#edit_supplier").style.display = "none";    
                                     }) 
                                 </script>
                                 <!--BẢNG DANH SÁCH NHÀ CUNG CẤP -->
