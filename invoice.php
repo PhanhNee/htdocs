@@ -24,6 +24,45 @@
     <link href="css/css/sb-admin-2.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="css/css/style.css" type="text/css" rel="stylesheet">
+    <style>
+        #add_warehouse_form{
+            width: 100%;
+            height: 90px;
+        }
+        #add_warehouse_modal{
+            top: 250px;
+            left: 460px;
+        }
+        #add_detail_invoice_form{
+            width: 100%;
+            height: 250px;
+        }
+        #tbl_chitiet_hoadon{
+            width:98%;
+            max-height: 200px;
+            display: block;
+            border:none;
+            margin-left:10px;
+            margin-right:9px;
+            border: 1px solid black;
+            border-collapse: collapse;
+            overflow-y: scroll;
+           
+        }
+        #tbl_chitiet_hoadon .thtb, .tdtb 
+        {
+            border: 1px solid gray;
+            height: 30px;
+            border-collapse: collapse;
+            background-color:  #b3ccff;
+            width: 190px;
+            text-align: center;
+        }
+        #add_warehouse_modal .add_modal_body{
+            width: 100%;
+            height: 400px;
+        }
+    </style>
 </head>
 
 <body id="page-top">
@@ -159,86 +198,117 @@
                                     <button class="add_button" id="btn_add_invoice">Thêm hóa đơn</button>
                                 </div>
                                 <!--POPUP THÊM MỚI HÓA ĐƠN -->
-                                <div class="add_modal" id="add_invoice_modal">
+                                <div class="add_modal" id="add_warehouse_modal" style="display: flex;">
                                     <div class="add_modal_inner">
                                         <!--HEADER POPUP -->
                                         <div class="add_modal_header">
                                         <p>Thêm mới hóa đơn</p>
-                                        <button class="btn_close" id="close_add_invoice">
+                                        <button class="btn_close" id="close_add_warehouse">
                                         <i class="fas fa-times"></i>
                                         </button>
                                     </div>
                                         <div class="add_modal_body">
-                                            <form class="add_form" name="add_invoice_form" id="add_invoice_form" method="POST" action="verify_add_invoice.php">
-                                                <table>
+                                            <form class="add_form" name="add_warehouse_form" id="add_warehouse_form" method="POST" action="verify_add_warehouse.php">
+                                                <table id="tbl_add_product">
                                                     <tr>
                                                         <td><label for="sdt">Số điện thoại<span style="color:red;"> (*)</span> :</label></td>
                                                         <td><input type="textbox" class="txtbox" id="sdt" name="sdt" style="width:212px;"><button><i class="fa fa-search" style="width:35px;height:100%;color:black;border:0;"></button></i></td>
                                                         <td><label for="makh">Mã KH<span style="color:red;"> (*)</span> :</label></td>
                                                         <td><input type="textbox" class="txtbox" id="makh" name="makh"></td>
-                                                    </tr>     
+                                                    </tr>    
                                                     <tr>
                                                         <td><label for="tenkh">Tên khách hàng<span style="color:red;"> (*)</span> :</label></td>
                                                         <td><input type="textbox" class="txtbox" id="tenkh" name="tenkh"></td>
                                                         <td><label for="diachi">Địa chỉ:</label></td>
                                                         <td><input type="textbox" class="txtbox" id="diachi" name="diachi"></td>
-                                                    </tr>     
+                                                    </tr>  
+                                                </table>   
+                                            </form>
+                                            <form method="get" action="warehouse.php">
+                                                <table id="tbl_add_product_detail">
                                                     <tr>
-                                                        <td><label for="manv" style="width: 160px;">Người lập<span style="color:red;"> (*)</span> :</label></td>
+                                                    <td><label for="masp">Mã sản phẩm<span style="color:red;margin:9px;"> (*)</span> :</label></td>
                                                         <td>
-                                                            <select class="dropdown_box" name="manv" id="manv" disabled="disabled">
-                                                                <?php
+                                                            <select class="dropdown_box" style="width: 260px;"  id="masp">
+                                                                <option selected value="">Chọn sản phẩm</option>
+                                                                <?php 
                                                                     include("connect.php");
-                                                                    $sql = "SELECT * FROM `tbl_nhanvien` WHERE MaNV = '".$_SESSION["username"]."'"; 
-                                        
+                                                                    $sql = "select MaSP, TenSP from tbl_sanpham where TonKho >0";
                                                                     $exec = mysqli_query($conn,$sql);
-                                                                    $num_rows = mysqli_num_rows($exec);
-                            
                                                                     while($row = mysqli_fetch_array($exec))
                                                                     {
                                                                 ;?>
-                                                                <option value="<?php echo $row["MaNV"] ;?>"><?php echo $row["MaNV"] ;?> - <?php echo $row["TenNV"] ;?></option>
-                                                                <?php
-                                                                    } 
+                                                                <option value="<?php echo $row['MaSP'];?>"><?php echo $row['MaSP'];?> - <?php echo $row['TenSP'];?></option>
+                                                                <?php 
+                                                                    }
                                                                 ;?>
                                                             </select>
                                                         </td>
+                                                        <td><label for="soluong" style="margin:10px;padding-left:0px;">Số lượng:</label></td>
+                                                        <td><input type="number" class="txtbox" id="soluong" name="soluong" style="width:212px;"><button id="add_prd" style="width:40px;height:30px;border-radius:5px;background:green;border:1px;color:white;">+</button></td>
                                                     </tr> 
-                                                </table>   
+                                                </table>     
                                             </form>
-                                            <form>
-                                                <table id="tbl_chitiet_hoadon" style="width:100%;border-style: groove;">
+                                            <form id="add_detail_invoice_form">
+                                                <table id="tbl_chitiet_hoadon">
+                                                    <thead>
                                                     <tr>
-                                                        <th>Mã sản phẩm</th>
-                                                        <th>Tên sản phẩm</th>
-                                                        <th>Số lượng</th>
-                                                        <th>Thành tiền</th>
+                                                        <th class="thtb">Mã sản phẩm</th>
+                                                        <th class="thtb">Tên sản phẩm</th>
+                                                        <th class="thtb">Số lượng</th>
+                                                        <th class="thtb">Thành tiền</th>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    <script>
+                                                    </script>
+                                                    <tr>
+                                                        <td class="tdtb">G01</td>
+                                                        <td class="tdtb">Giày cao gót quai ngang</td>
+                                                        <td class="tdtb">1</td>
+                                                        <td class="tdtb">300000</td>
                                                     </tr>
                                                     <tr>
-                                                        <td>January</td>
-                                                        <td>$100</td>
-                                                        <td>January</td>
-                                                        <td>$100</td>
+                                                        <td class="tdtb">T02</td>
+                                                        <td class="tdtb">Tui deo cheo</td>
+                                                        <td class="tdtb">1</td>
+                                                        <td class="tdtb">305000</td>
                                                     </tr>
                                                     <tr>
-                                                        <td>February</td>
-                                                        <td>$80</td>
-                                                        <td>February</td>
-                                                        <td>$80</td>
+                                                        <td class="tdtb">V02</td>
+                                                        <td class="tdtb">Váy xếp ly dài 2 dây</td>
+                                                        <td class="tdtb">1</td>
+                                                        <td class="tdtb">305000</td>
                                                     </tr>
+                                                    <tr>
+                                                        <td class="tdtb">V01</td>
+                                                        <td class="tdtb">Váy xếp ly màu đen sang trọng tinh tế</td>
+                                                        <td class="tdtb">1</td>
+                                                        <td class="tdtb">220000</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="tdtb">T04</td>
+                                                        <td class="tdtb">Giày cao gót bông </td>
+                                                        <td class="tdtb">1</td>
+                                                        <td class="tdtb">305000</td>
+                                                    </tr>
+                                                    </tbody>
                                                 </table>
+                                                <div class="add_modal_footer">
+                                                <button class="btn_save" id="btn_save_add_invoice">Tạo mới</button>
+                                                </div>
                                             </form>
                                         </div>
                                     </div>   
                                 </div>
                                 <script>
-                                    //Chọn thêm hóa đơn, hiển thị popup thêm hóa đơn
-                                    document.getElementById("btn_add_invoice").addEventListener("click",function(){
-                                        document.querySelector("#add_invoice_modal").style.display = "flex"; 
+                                    //Chọn thêm phiếu, hiển thị popup thêm phiếu
+                                    document.getElementById("btn_add_warehouse").addEventListener("click",function(){
+                                        document.querySelector("#add_warehouse_modal").style.display = "flex"; 
                                     })
-                                    //Đóng popup thêm hóa đơn
-                                    document.getElementById("close_add_invoice").addEventListener("click",function(){
-                                        document.querySelector("#add_invoice_modal").style.display = "none";    
+                                    //Đóng popup thêm phiếu
+                                    document.getElementById("close_add_warehouse").addEventListener("click",function(){
+                                        document.querySelector("#add_warehouse_modal").style.display = "none";    
                                     })   
                                 </script>
                                 <!--BẢNG DANH SÁCH HÓA ĐƠN -->

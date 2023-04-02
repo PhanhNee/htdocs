@@ -24,6 +24,7 @@
     <link href="css/css/sb-admin-2.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="css/css/style.css" type="text/css" rel="stylesheet">
+    
 </head>
 
 <body id="page-top">
@@ -159,88 +160,7 @@
                                     <button class="add_button" id="btn_add_warehouse">Thêm phiếu</button>
                                 </div>
                                 <!--POPUP THÊM MỚI PHIẾU -->
-                                <div class="add_modal" id="add_warehouse_modal">
-                                    <div class="add_modal_inner">
-                                        <!--HEADER POPUP -->
-                                        <div class="add_modal_header">
-                                        <p>Thêm mới phiếu</p>
-                                        <button class="btn_close" id="close_add_warehouse">
-                                        <i class="fas fa-times"></i>
-                                        </button>
-                                    </div>
-                                        <div class="add_modal_body">
-                                            <form class="add_form" name="add_warehouse_form" id="add_warehouse_form" method="POST" action="verify_add_warehouse.php">
-                                                <table>
-                                                    <tr>
-                                                        <td><label for="sdt">Số điện thoại<span style="color:red;"> (*)</span> :</label></td>
-                                                        <td><input type="textbox" class="txtbox" id="sdt" name="sdt" style="width:212px;"><button><i class="fa fa-search" style="width:35px;height:100%;color:black;border:0;"></button></i></td>
-                                                        <td><label for="makh">Mã KH<span style="color:red;"> (*)</span> :</label></td>
-                                                        <td><input type="textbox" class="txtbox" id="makh" name="makh"></td>
-                                                    </tr>     
-                                                    <tr>
-                                                        <td><label for="tenkh">Tên khách hàng<span style="color:red;"> (*)</span> :</label></td>
-                                                        <td><input type="textbox" class="txtbox" id="tenkh" name="tenkh"></td>
-                                                        <td><label for="diachi">Địa chỉ:</label></td>
-                                                        <td><input type="textbox" class="txtbox" id="diachi" name="diachi"></td>
-                                                    </tr>     
-                                                    <tr>
-                                                        <td><label for="manv" style="width: 160px;">Người lập<span style="color:red;"> (*)</span> :</label></td>
-                                                        <td>
-                                                            <select class="dropdown_box" name="manv" id="manv" disabled="disabled">
-                                                                <?php
-                                                                    include("connect.php");
-                                                                    $sql = "SELECT * FROM `tbl_nhanvien` WHERE MaNV = '".$_SESSION["username"]."'"; 
-                                        
-                                                                    $exec = mysqli_query($conn,$sql);
-                                                                    $num_rows = mysqli_num_rows($exec);
-                            
-                                                                    while($row = mysqli_fetch_array($exec))
-                                                                    {
-                                                                ;?>
-                                                                <option value="<?php echo $row["MaNV"] ;?>"><?php echo $row["MaNV"] ;?> - <?php echo $row["TenNV"] ;?></option>
-                                                                <?php
-                                                                    } 
-                                                                ;?>
-                                                            </select>
-                                                        </td>
-                                                    </tr> 
-                                                </table>   
-                                            </form>
-                                            <form>
-                                                <table id="tbl_chitiet_hoadon" style="width:100%;border-style: groove;">
-                                                    <tr>
-                                                        <th>Mã sản phẩm</th>
-                                                        <th>Tên sản phẩm</th>
-                                                        <th>Số lượng</th>
-                                                        <th>Thành tiền</th>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>January</td>
-                                                        <td>$100</td>
-                                                        <td>January</td>
-                                                        <td>$100</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>February</td>
-                                                        <td>$80</td>
-                                                        <td>February</td>
-                                                        <td>$80</td>
-                                                    </tr>
-                                                </table>
-                                            </form>
-                                        </div>
-                                    </div>   
-                                </div>
-                                <script>
-                                    //Chọn thêm phiếu, hiển thị popup thêm phiếu
-                                    document.getElementById("btn_add_warehouse").addEventListener("click",function(){
-                                        document.querySelector("#add_warehouse_modal").style.display = "flex"; 
-                                    })
-                                    //Đóng popup thêm phiếu
-                                    document.getElementById("close_add_warehouse").addEventListener("click",function(){
-                                        document.querySelector("#add_warehouse_modal").style.display = "none";    
-                                    })   
-                                </script>
+                                
                                 <!--BẢNG DANH SÁCH PHIẾU -->
                                 <table class="table table-bordered" /*id="dataTable"*/ width="100%" cellspacing="0">
                                     <thead >
@@ -254,7 +174,7 @@
                                         </tr>
                                     </thead>
                                     <?php
-                                        
+                                        include("connect.php");
                                         $sql = "SELECT * FROM `tbl_phieuxuatnhapkho`"; 
                                         
                                         $exec = mysqli_query($conn,$sql);
