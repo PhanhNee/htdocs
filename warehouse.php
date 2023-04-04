@@ -200,11 +200,11 @@
                                                 ;?>
                                             </center></td>
                                             <th>
-                                                <button class="view_button" id="view_product" title="Xem chi tiết" onclick="openModal()">
-                                                    <i class="fas fa-fw fa-eye"></i>
+                                                <button class="view_button" id="view_product" title="Xem chi tiết" >
+                                                    <a>Chi tiết</a>
                                                 </button>
                                                 <button class="edit_button" id="edit_product">
-                                                    <i class="fa fa-pencil-square-o" title="Chỉnh sửa"></i>
+                                                    <a>Chỉnh sửa</a>
                                                 </button>
                                             </th>
                                         </tr>

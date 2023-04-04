@@ -198,7 +198,7 @@
                                     <button class="add_button" id="btn_add_invoice">Thêm hóa đơn</button>
                                 </div>
                                 <!--POPUP THÊM MỚI HÓA ĐƠN -->
-                                <div class="add_modal" id="add_warehouse_modal" style="display: flex;">
+                                <div class="add_modal" id="add_warehouse_modal">
                                     <div class="add_modal_inner">
                                         <!--HEADER POPUP -->
                                         <div class="add_modal_header">
@@ -303,7 +303,7 @@
                                 </div>
                                 <script>
                                     //Chọn thêm phiếu, hiển thị popup thêm phiếu
-                                    document.getElementById("btn_add_warehouse").addEventListener("click",function(){
+                                    document.getElementById("btn_add_invoice").addEventListener("click",function(){
                                         document.querySelector("#add_warehouse_modal").style.display = "flex"; 
                                     })
                                     //Đóng popup thêm phiếu
@@ -340,10 +340,10 @@
                                             <td><center><?php echo $row["NgayLap"] ;?></center></td>
                                             <th>
                                                 <button class="view_button" id="view_product" title="Xem chi tiết" onclick="openModal()">
-                                                    <i class="fas fa-fw fa-eye"></i>
+                                                    <a>Chi tiết</a>
                                                 </button>
                                                 <button class="edit_button" id="edit_product">
-                                                    <i class="fa fa-pencil-square-o" title="Chỉnh sửa"></i>
+                                                    <a>Chỉnh sửa</a>
                                                 </button>
                                             </th>
                                         </tr>

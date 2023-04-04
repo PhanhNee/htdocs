@@ -193,20 +193,18 @@
                                                                 ;?>
                                                     <tr>
                                                         <td><label for="manv">Mã nhân viên<span style="color:red;"> (*)</span> :</label></td>
-                                                        <td><input type="textbox" class="txtbox" id="manv" name="manv" value="<?php echo $row['MaNV'] ;?>"></td>
+                                                        <td><input type="textbox" class="txtbox" id="manv" name="manv" readonly value="<?php echo $row['MaNV'] ;?>"></td>
                                                         <td><label for="sdt">Giới tính<span style="color:red;"> (*)</span> :</label></td>
-                                                        <td><select class="dropdown_box" id="gioitinh" name="gioitinh">
+                                                        <td><select class="dropdown_box" id="gioitinh" readonly name="gioitinh">
                                                         <?php
-                                                            if($row["GioiTinh"] == 0)
+                                                            if($row["GioiTinh"] == 1)
                                                             {
                                                         ;?>
-                                                                <option value="0">Nam</option>
-                                                                <option value="1">Nữ</option>
+                                                                <option>Nam</option>
                                                         <?php
                                                             }else{
                                                         ;?>
-                                                                <option value="1">Nữ</option>
-                                                                <option value="0">Nam</option>
+                                                                <option>Nữ</option>
                                                         <?php
                                                             } 
                                                         ;?>
@@ -215,9 +213,9 @@
                                                     </tr>
                                                     <tr>
                                                         <td><label for="tennv">Tên nhân viên<span style="color:red;"> (*)</span> : </label></td>
-                                                        <td><input type="textbox" class="txtbox" id="tennv" name="tennv" required value="<?php echo $row['TenNV'] ;?>"></td>
+                                                        <td><input type="textbox" class="txtbox" id="tennv" name="tennv" readonly required value="<?php echo $row['TenNV'] ;?>"></td>
                                                         <td><label for="ngaysinh">Ngày sinh<span style="color:red;"> (*)</span> : </label></td>
-                                                        <td><input type="date" class="txtbox" id="ngaysinh" name="ngaysinh" required value="<?php echo $row['NgaySinh'] ;?>"></td>
+                                                        <td><input type="date" class="txtbox" id="ngaysinh" name="ngaysinh" readonly required value="<?php echo $row['NgaySinh'] ;?>"></td>
                                                     </tr>
                                                     <tr>
                                                         <td><label for="sdt">Số điện thoại<span style="color:red;"> (*)</span> :</label></td>

@@ -13,7 +13,11 @@
     echo "
         <script>
             alert('Cập nhật thành công !');
-            window.location.href('employee.php');
         </script>
+    ";
+    echo "
+    <script type='text/javascript'>
+    window.location.href='employee.php';
+    </script>
     ";
 ;?>

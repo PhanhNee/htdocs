@@ -35,3 +35,30 @@ if(mysqli_num_rows($result) > 0)
   echo $output;
  }
 ?>
+$sql = "select hd.MaHD,sum(CASE WHEN sp.GiaKM IS NULL THEN sp.NguyenGia * cthd.SoLuong ELSE sp.GiaKM * cthd.SoLuong END) as TongTien, hd.NgayLap 
+        from tbl_hoadon as hd join tbl_chitiet_hoadon as cthd on hd.MaHD = cthd.MaHD 
+        join tbl_sanpham as sp on cthd.MaSP = sp.MaSP where hd.NgayLap BETWEEN '".$tungay."' AND '".$denngay."' 
+        GROUP BY cthd.MaHD";
+        $exec = mysqli_query($conn,$sql);
+
+        $output .= '
+            <table class="table table-bordered" >  
+                <tr>  
+                    <th>Mã hóa đơn</th>  
+                    <th>Tổng tiền</th>  
+                    <th>Ngày lập hóa đơn</th>
+                    </tr>
+       ';
+        while($row = mysqli_fetch_array($result))
+        {
+            $output .= '
+            <tr>  
+                <td>'.$row["MaHD"].'</td> 
+                <td>'.$row["TongTien"].'</td>  
+                <td>'.$row["NgayLap"].'</td>  
+            </tr>
+            ';
+        }
+        $output .= '</table>';
+
+        $sql = "INSERT INTO `tbl_xuat_baocao`(`TenFile`, `Code`) VALUES ('[value-1]','[value-2]')";

@@ -184,11 +184,11 @@
                                                                 $code = mysqli_fetch_object($exec) -> MaNV;
                                                                     
                                                                 ;?>
-                                                        <td><input type="textbox" class="txtbox" id="manv" name="manv" disabled="disabled" value="<?php echo ++$code ;?>"></td>
+                                                        <td><input type="textbox" class="txtbox" id="manv" name="manv" readonly value="<?php echo ++$code ;?>"></td>
                                                         <td><label for="sdt">Giới tính<span style="color:red;"> (*)</span> :</label></td>
                                                         <td><select class="dropdown_box" id="gioitinh" name="gioitinh">
-                                                                <option>Nam</option>
-                                                                <option>Nữ</option>
+                                                                <option value="1">Nam</option>
+                                                                <option value="0">Nữ</option>
                                                             </select>
                                                         </td>
                                                     </tr>
@@ -242,7 +242,7 @@
                                                         <td></td><td></td>
                                                     <td><label for="trangthai">Trạng thái<span style="color:red;"> (*)</span> :</label></td>
                                                         <td><select class="dropdown_box" id="trangthai" name="trangthai" disabled="disabled">
-                                                                <option>Đang hoạt động</option>
+                                                                <option value="0">Đang hoạt động</option>
                                                             </select>
                                                         </td>
                                                     </tr>            
