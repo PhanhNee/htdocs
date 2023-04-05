@@ -267,7 +267,7 @@
                                                     <a href="dowloadfile.php?id=<?php echo $row['MaFile'];?>">Tải xuống</a>
                                                 </button>
                                                 <button class="edit_button" id="delete_file" style="background:red;">
-                                                    <a href="deletefile.php?id=<?php echo $row['MaFile'];?>">Xóa</a>
+                                                    <a href="deletefile.php?id=<?php echo $row['MaFile'];?>?name=<?php echo $row["TenFile"] ;?>">Xóa</a>
                                                 </button>
                                             </th>
                                         </tr>

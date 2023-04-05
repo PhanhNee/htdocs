@@ -10,7 +10,7 @@
     if($tenbaocao =="Báo cáo doanh thu")
     {
         $file_name = "doanhthu_".$tungay."_".$denngay;
-        $sql = "INSERT INTO `tbl_baocao`(`MaFile`, `TenFile`, `NgayXuat`, `MaNV`) VALUES ('','".$file_name."','','".$_SESSION['username']."')";
+        $sql = "INSERT INTO `tbl_baocao`(`TenFile`,`MaNV`) VALUES ('".$file_name."','".$_SESSION['username']."')";
         $exec = mysqli_query($conn,$sql);
 
         $sql = "select hd.MaHD as MaHD,sum(CASE WHEN sp.GiaKM IS NULL THEN sp.NguyenGia * cthd.SoLuong ELSE sp.GiaKM * cthd.SoLuong END) as TongTien, hd.NgayLap as NgayLap
@@ -39,13 +39,12 @@
                 }
         $output .= '</table>';
     
-        $sql = "select * from tbl_baocao where TenFile = '".$file_name."' AND ";
+        $sql = "SELECT * FROM tbl_baocao WHERE TenFile = '".$file_name."' ORDER BY NgayXuat DESC LIMIT 1;";
         $exec = mysqli_query($conn,$sql);
-        $count = mysqli_num_rows($exec);
-        echo $count;
-        $row = mysqli_fetch_array($exec);
+        $mafile = mysqli_fetch_object($exec) -> MaFile;
 
-        $sql ="UPDATE `tbl_baocao` SET `Code`='".$output."' WHERE MaFile = '".$row["MaFile"]."'";
+        $sql ="UPDATE `tbl_baocao` SET `Code`='".$output."' WHERE MaFile = '".$mafile."'";
+        $exec = mysqli_query($conn,$sql);
         echo "
                 <script type='text/javascript'>
                 window.alert('Xuất file thành công!');
@@ -59,7 +58,7 @@
                 ";
 
     }
-    else if($tenbaocao =="Báo cáo tồn kho")
+    /*else if($tenbaocao =="Báo cáo tồn kho")
     {
         $file_name = "tonkho_".$today["year"]."-".$today["mon"]."-".$today["mday"];
     }else if($tenbaocao =="Báo cáo nhập kho")
@@ -69,6 +68,6 @@
     }else{
         $file_name = "xuatkho_".$tungay."_".$denngay;
         
-    }
+    }*/
     
 ;?>

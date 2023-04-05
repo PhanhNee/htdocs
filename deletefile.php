@@ -7,8 +7,7 @@
 
     echo "
         <script>
-            alert('Xóa thành công !');
-            window.location.href('report.php');
+            alert('Xóa thành công!');
         </script>
     ";
     echo "
