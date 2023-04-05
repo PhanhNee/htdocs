@@ -316,12 +316,14 @@
                                     <thead >
                                         <tr>
                                             <th><center>Mã hóa đơn</center></th>
-                                            <th><center>Mã khách hàng</center></th>
-                                            <th><center>Mã nhân viên</center></th>
                                             <th><center>Ngày lập</center></th>
+                                            <th><center>Mã nhân viên</center></th>
+                                            <th><center>Mã khách hàng</center></th>
                                             <th></th>
                                         </tr>
                                     </thead>
+                                    
+                                    <tbody>
                                     <?php
                                         
                                         $sql = "SELECT * FROM `tbl_hoadon`"; 
@@ -331,11 +333,10 @@
 
                                         while($row = mysqli_fetch_array($exec))
                                         {
-                                    ;?>
-                                    <tbody>
+                                        ;?>
                                         <tr>
                                             <td><center><?php echo $row["MaHD"] ;?></center></td>
-                                            <td><center><?php echo $row["MaKH"] ;?></center></td>
+                                            <td><center><?php echo $row["NgayLap"] ;?></center></td>
                                             <td><center><?php echo $row["MaNV"] ;?></center></td>
                                             <td><center><?php echo $row["MaKH"] ;?></center></td>
                                             <th>

@@ -5,12 +5,12 @@
     $tenbaocao = $_POST["tenbaocao"];
     $tungay = $_POST["tungay"];
     $denngay = $_POST["denngay"];
-    $ouput = '';
+    $output = '';
     
     if($tenbaocao =="Báo cáo doanh thu")
     {
         $file_name = "doanhthu_".$tungay."_".$denngay;
-        $sql = "INSERT INTO `tbl_baocao`(`MaFile`, `TenFile`, `NgayXuat`, `MaNV`) VALUES (,'".$file_name."',,'".$_SESSION['username']."')";
+        $sql = "INSERT INTO `tbl_baocao`(`MaFile`, `TenFile`, `NgayXuat`, `MaNV`) VALUES ('','".$file_name."','','".$_SESSION['username']."')";
         $exec = mysqli_query($conn,$sql);
 
         $sql = "select hd.MaHD,sum(CASE WHEN sp.GiaKM IS NULL THEN sp.NguyenGia * cthd.SoLuong ELSE sp.GiaKM * cthd.SoLuong END) as TongTien, hd.NgayLap 
@@ -39,11 +39,11 @@
                 }
         $output .= '</table>';
 
-        $sql = "select MaFile from tbl_baocao where TenFile = '".$file_name."'";
+        $sql = "select * from tbl_baocao where TenFile = '".$file_name."'";
         $exec = mysqli_query($conn,$sql);
-        $mafile = mysqli_fetch_object($exec) -> MaFile;
+        $row = mysqli_fetch_array($exec);
 
-        $sql ="UPDATE `tbl_baocao` SET `Code`='".$output."' WHERE MaFile = '".$mafile."'";
+        $sql ="UPDATE `tbl_baocao` SET `Code`='".$output."' WHERE MaFile = '".$row["MaFile"]."'";
         echo "
                 <script type='text/javascript'>
                 window.alert('Xuất file thành công!');
