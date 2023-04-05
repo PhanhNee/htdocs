@@ -9,7 +9,7 @@
     
     if($tenbaocao =="Báo cáo doanh thu")
     {
-        $file_name = "doanhthu_".$tungay."_".$denngay;
+        $file_name = "doanhthu_".$tungay."_".$denngay.".xls";
         $sql = "INSERT INTO `tbl_baocao`(`TenFile`,`MaNV`) VALUES ('".$file_name."','".$_SESSION['username']."')";
         $exec = mysqli_query($conn,$sql);
 
@@ -20,7 +20,7 @@
         $exec = mysqli_query($conn,$sql);
         
         $output .= '
-            <table class="table table-bordered" >  
+            <table>  
                 <tr>  
                     <th>Mã hóa đơn</th>  
                     <th>Tổng tiền</th>  
@@ -58,16 +58,19 @@
                 ";
 
     }
-    /*else if($tenbaocao =="Báo cáo tồn kho")
+    else if($tenbaocao =="Báo cáo tồn kho")
     {
-        $file_name = "tonkho_".$today["year"]."-".$today["mon"]."-".$today["mday"];
+        $file_name = "tonkho_".$today["year"]."-".$today["mon"]."-".$today["mday"].".xls";
+        $sql = "Select * from tbl_sanpham";
+        $exec = mysqli_query($conn,$sql);
+        echo $output;
     }else if($tenbaocao =="Báo cáo nhập kho")
     {
-        $file_name = "nhapkho_".$tungay."_".$denngay;
+        $file_name = "nhapkho_".$tungay."_".$denngay.".xls";
         
     }else{
-        $file_name = "xuatkho_".$tungay."_".$denngay;
+        $file_name = "xuatkho_".$tungay."_".$denngay.".xls";
         
-    }*/
+    }
     
 ;?>
