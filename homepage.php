@@ -95,14 +95,6 @@
             <hr class="sidebar-divider">
 
             <!-- Heading -->
-            <div class="sidebar-heading">
-                NỘI BỘ
-            </div>
-            <li class="nav-item">
-                <a class="nav-link" href="user.php">
-                    <i class="fas fa-fw fa-user-edit"></i>
-                    <span>Cá nhân</span></a>
-            </li>
             
 
             <!-- Sidebar Toggler (Sidebar) -->

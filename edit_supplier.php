@@ -82,14 +82,7 @@
                     <span>Nhân viên</span></a>
             </li>
             <hr class="sidebar-divider">
-            <div class="sidebar-heading">
-                NỘI BỘ
-            </div>
-            <li class="nav-item">
-                <a class="nav-link" href="user.php">
-                    <i class="fas fa-fw fa-user-edit"></i>
-                    <span>Cá nhân</span></a>
-            </li>
+           
             <div class="text-center d-none d-md-inline">
                 <button class="rounded-circle border-0" id="sidebarToggle"></button>
             </div>
