@@ -6,5 +6,4 @@
    $result = mysqli_query($conn, $query);
     header('Content-Type: application/xls');
     header('Content-Disposition: attachment; filename=download.xls');
-    echo $output;
 ;?>

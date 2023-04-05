@@ -1,5 +1,4 @@
 <?php
-    session_start();
     if(!$_SESSION['checked'])
     {
         echo "
@@ -10,7 +9,7 @@
 
         echo "
                 <script type='text/javascript'>
-                    window.location.href='login.php';
+                    window.location.href='index.php';
                 </script>
             ";
     }
