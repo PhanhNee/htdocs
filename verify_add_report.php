@@ -10,7 +10,7 @@
     if($tenbaocao =="Báo cáo doanh thu")
     {
         $file_name = "doanhthu_".$tungay."_".$denngay;
-        $sql = "INSERT INTO `tbl_baocao`(`MaFile`, `TenFile`, `NgayXuat`, `MaNV`) VALUES ('','".$file_name."','','".$_SESSION['username']."')";
+        $sql = "INSERT INTO `tbl_baocao`(`MaFile`, `TenFile`, `NgayXuat`, `MaNV`) VALUES (,'".$file_name."',,'".$_SESSION['username']."')";
         $exec = mysqli_query($conn,$sql);
 
         $sql = "select hd.MaHD,sum(CASE WHEN sp.GiaKM IS NULL THEN sp.NguyenGia * cthd.SoLuong ELSE sp.GiaKM * cthd.SoLuong END) as TongTien, hd.NgayLap 
@@ -46,7 +46,7 @@
         $sql ="UPDATE `tbl_baocao` SET `Code`='".$output."' WHERE MaFile = '".$mafile."'";
         echo "
                 <script type='text/javascript'>
-                window.alert('Thêm mới thành công!');
+                window.alert('Xuất file thành công!');
                 </script>
                 ";
 

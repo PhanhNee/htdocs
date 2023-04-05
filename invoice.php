@@ -316,9 +316,9 @@
                                     <thead >
                                         <tr>
                                             <th><center>Mã hóa đơn</center></th>
-                                            <th><center>Ngày lập</center></th>
-                                            <th><center>Mã nhân viên</center></th>
                                             <th><center>Mã khách hàng</center></th>
+                                            <th><center>Mã nhân viên</center></th>
+                                            <th><center>Ngày lập</center></th>
                                             <th></th>
                                         </tr>
                                     </thead>
@@ -337,9 +337,9 @@
                                             <td><center><?php echo $row["MaHD"] ;?></center></td>
                                             <td><center><?php echo $row["MaKH"] ;?></center></td>
                                             <td><center><?php echo $row["MaNV"] ;?></center></td>
-                                            <td><center><?php echo $row["NgayLap"] ;?></center></td>
+                                            <td><center><?php echo $row["MaKH"] ;?></center></td>
                                             <th>
-                                                <button class="view_button" id="view_product" title="Xem chi tiết" onclick="openModal()">
+                                                <button class="view_button" id="view_product" title="Xem chi tiết">
                                                     <a>Chi tiết</a>
                                                 </button>
                                                 <button class="edit_button" id="edit_product">

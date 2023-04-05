@@ -11,4 +11,9 @@
             window.location.href('report.php');
         </script>
     ";
+    echo "
+        <script>
+            window.location.href('report.php');
+        </script>
+    ";
 ;?>
